@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clearAuth } from '../actions/auth';
+import { clearAuth } from '../actions/auth-actions';
 import { clearAuthToken } from '../local-storage';
 
 export class HeaderBar extends React.Component {
