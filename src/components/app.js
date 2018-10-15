@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 
+import AddFoodScreen from './add-food-screen';
+import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
-import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import { refreshAuthToken } from '../actions/auth-actions';
 
@@ -43,8 +44,11 @@ export class App extends React.Component {
       <div className="app">
         <HeaderBar />
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/register" component={RegistrationPage} />
+        <Switch>
+          <Route path="/dashboard/add" component={AddFoodScreen} />
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
       </div>
     );
   }
