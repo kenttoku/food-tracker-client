@@ -1,15 +1,15 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const FETCH_FOOD_SUCCESS = 'FETCH_FOOD_SUCCESS';
-export const fetchFoodSuccess = data => ({
-  type: FETCH_FOOD_SUCCESS,
-  data
+export const FETCH_ALL_FOOD_SUCCESS = 'FETCH_FOOD_SUCCESS';
+export const fetchAllFoodSuccess = foodList => ({
+  type: FETCH_ALL_FOOD_SUCCESS,
+  foodList
 });
 
-export const FETCH_FOOD_ERROR = 'FETCH_FOOD_ERROR';
-export const fetchFoodError = error => ({
-  type: FETCH_FOOD_ERROR,
+export const FETCH_ALL_FOOD_ERROR = 'FETCH_FOOD_ERROR';
+export const fetchAllFoodError = error => ({
+  type: FETCH_ALL_FOOD_ERROR,
   error
 });
 
@@ -24,8 +24,8 @@ export const fetchAllFood = () => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(({ data }) => dispatch(fetchFoodSuccess(data)))
+    .then(foodList => dispatch(fetchAllFoodSuccess(foodList)))
     .catch(err => {
-      dispatch(fetchFoodError(err));
+      dispatch(fetchAllFoodError(err));
     });
 };

@@ -1,20 +1,20 @@
 import {
-  FETCH_PROTECTED_DATA_SUCCESS,
-  FETCH_PROTECTED_DATA_ERROR
-} from '../actions/protected-data';
+  FETCH_ALL_FOOD_SUCCESS,
+  FETCH_ALL_FOOD_ERROR
+} from '../actions/food-actions';
 
 const initialState = {
-  data: '',
+  foodList: [],
   error: null
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
+  if (action.type === FETCH_ALL_FOOD_SUCCESS) {
     return Object.assign({}, state, {
-      data: action.data,
+      foodList: action.foodList,
       error: null
     });
-  } else if (action.type === FETCH_PROTECTED_DATA_ERROR) {
+  } else if (action.type === FETCH_ALL_FOOD_ERROR) {
     return Object.assign({}, state, {
       error: action.error
     });

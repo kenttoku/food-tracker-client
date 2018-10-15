@@ -1,16 +1,17 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
+
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth-reducer';
-import protectedDataReducer from './reducers/protected-data';
+import foodReducer from './reducers/food-reducer';
 import { setAuthToken, refreshAuthToken } from './actions/auth-actions';
 
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
-    protectedData: protectedDataReducer
+    food: foodReducer
   }),
   applyMiddleware(thunk)
 );
