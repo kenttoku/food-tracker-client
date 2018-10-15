@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import requiresLogin from './requires-login';
 import { fetchProtectedData } from '../actions/protected-data';
-import Navbar from './navbar';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -17,7 +16,6 @@ export class Dashboard extends React.Component {
         <div className="dashboard-username">
           Username: {this.props.username}
         </div>
-        <Navbar />
       </div>
     );
   }

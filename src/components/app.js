@@ -6,6 +6,7 @@ import AddFoodScreen from './add-food-screen';
 import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
+import Navbar from './navbar';
 import RegistrationPage from './registration-page';
 import { refreshAuthToken } from '../actions/auth-actions';
 
@@ -49,6 +50,7 @@ export class App extends React.Component {
           <Route path="/dashboard/add" component={AddFoodScreen} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
+        <Navbar />
       </div>
     );
   }

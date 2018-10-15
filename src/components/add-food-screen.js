@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import requiresLogin from './requires-login';
+
 class AddFoodScreen extends React.Component {
   render() {
     console.log('addfoodscreen');
@@ -18,4 +20,4 @@ class AddFoodScreen extends React.Component {
   }
 }
 
-export default connect()(AddFoodScreen);
+export default requiresLogin()(connect()(AddFoodScreen));
