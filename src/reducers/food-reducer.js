@@ -15,39 +15,33 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   if (action.type === FETCH_ALL_FOOD_REQUEST) {
-    console.log('FETCH_ALL_FOOD_REQUEST');
     return Object.assign({}, state, {
       loading: true,
       error: null
     });
   } else if (action.type === FETCH_ALL_FOOD_SUCCESS) {
-    console.log('FETCH_ALL_FOOD_SUCCESS');
     return Object.assign({}, state, {
       foodList: action.foodList,
       loading: false,
       error: null
     });
   } else if (action.type === FETCH_ALL_FOOD_ERROR) {
-    console.log('FETCH_ALL_FOOD_ERROR');
     return Object.assign({}, state, {
       loading: false,
       error: action.error
     });
   } else if (action.type === ADD_NEW_FOOD_REQUEST) {
-    console.log('ADD_NEW_FOOD_REQUEST');
     return Object.assign({}, state, {
       loading: true,
       error: null
     });
   } else if (action.type === ADD_NEW_FOOD_SUCCESS) {
-    console.log('ADD_NEW_FOOD_SUCCESS');
     return Object.assign({}, state, {
       foodList: [action.food, ...state.foodList],
       loading: false,
       error: null
     });
   } else if (action.type === ADD_NEW_FOOD_ERROR) {
-    console.log('ADD_NEW_FOOD_ERROR');
     return Object.assign({}, state, {
       loading: false,
       error: action.error
