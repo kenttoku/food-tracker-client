@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAllFood } from '../actions/food-actions';
+import { Link } from 'react-router-dom';
 
+import { fetchAllFood } from '../actions/food-actions';
 import requiresLogin from './requires-login';
 
 class AddFoodScreen extends React.Component {
@@ -20,7 +21,7 @@ class AddFoodScreen extends React.Component {
         <ul>
           {foodListElements}
         </ul>
-        <div>[New Food Button Here]</div>
+        <Link to="/dashboard/newfood">New Food</Link>
       </div>
     );
   }
