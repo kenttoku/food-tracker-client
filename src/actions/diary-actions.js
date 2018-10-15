@@ -13,9 +13,9 @@ export const addNewDiaryRequest = () => ({
 });
 
 export const ADD_NEW_DIARY_SUCCESS = 'ADD_NEW_DIARY_SUCCESS';
-export const addNewDiarySuccess = food => ({
+export const addNewDiarySuccess = diary => ({
   type: ADD_NEW_DIARY_SUCCESS,
-  food
+  diary
 });
 
 export const ADD_NEW_DIARY_ERROR = 'ADD_NEW_DIARY_ERROR';
@@ -24,7 +24,7 @@ export const addNewDiaryError = error => ({
   error
 });
 
-export const addNewDiary = (newDiary) => (dispatch, getState) => {
+export const addNewDiary = (year, month, day) => (dispatch, getState) => {
   dispatch(addNewDiaryRequest());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/diaries`, {
@@ -33,11 +33,11 @@ export const addNewDiary = (newDiary) => (dispatch, getState) => {
       Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(newDiary)
+    body: JSON.stringify({ year, month, day })
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(food => dispatch(addNewDiarySuccess(food)))
+    .then(diary => dispatch(addNewDiarySuccess(diary)))
     .catch(err => {
       dispatch(addNewDiaryError(err));
     });
@@ -81,3 +81,8 @@ export const fetchDiaries = (year, month, day) => (dispatch, getState)  => {
       dispatch(fetchDiariesError(err));
     });
 };
+
+export const SET_ENTRIES = 'SET_ENTRIES';
+export const setEntries = () => ({
+  type: SET_ENTRIES
+});
