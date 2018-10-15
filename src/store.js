@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth-reducer';
+import diaryReducer from './reducers/diary-reducer';
 import foodReducer from './reducers/food-reducer';
 import { setAuthToken, refreshAuthToken } from './actions/auth-actions';
 
@@ -11,6 +12,7 @@ const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
+    diary: diaryReducer,
     food: foodReducer
   }),
   applyMiddleware(thunk)

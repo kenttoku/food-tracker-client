@@ -13,7 +13,7 @@ class AddFoodScreen extends React.Component {
   render() {
     console.log(this.props);
     const foodListElements = this.props.foodList.map(food => {
-      return (<li key={food.id}>{food.name} - [point value] - [delete button]</li>);
+      return (<li key={food.id}>{food.name} - [point value]</li>);
     });
     return (
       <div className="add-food">

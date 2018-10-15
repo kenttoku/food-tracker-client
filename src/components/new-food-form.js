@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
-import { required, nonEmpty, nonNegative } from '../validators';
+import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
 
 export class NewFoodForm extends React.Component {

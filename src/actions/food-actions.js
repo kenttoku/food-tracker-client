@@ -67,6 +67,6 @@ export const addNewFood = (newFood) => (dispatch, getState) => {
     .then(res => res.json())
     .then(food => dispatch(addNewFoodSuccess(food)))
     .catch(err => {
-      dispatch(fetchAllFoodError(err));
+      dispatch(addNewFoodError(err));
     });
 };
