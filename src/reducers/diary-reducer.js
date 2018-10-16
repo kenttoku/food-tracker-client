@@ -2,6 +2,9 @@ import {
   FETCH_DIARY_REQUEST,
   FETCH_DIARY_SUCCESS,
   FETCH_DIARY_ERROR,
+  ADD_FOOD_TO_DIARY_REQUEST,
+  ADD_FOOD_TO_DIARY_SUCCESS,
+  ADD_FOOD_TO_DIARY_ERROR,
   SET_DATE,
   SET_ENTRIES
 } from '../actions/diary-actions';
@@ -42,6 +45,22 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === FETCH_DIARY_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    });
+  } else if (action.type === ADD_FOOD_TO_DIARY_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    });
+  } else if (action.type === ADD_FOOD_TO_DIARY_SUCCESS) {
+    return Object.assign({}, state, {
+      currentDiary: action.diary,
+      loading: false,
+      error: null
+    });
+  } else if (action.type === ADD_FOOD_TO_DIARY_ERROR) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error

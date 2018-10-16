@@ -49,3 +49,45 @@ export const fetchDiary = (yyyymmdd) => (dispatch, getState)  => {
       dispatch(fetchDiaryError(err));
     });
 };
+
+export const ADD_FOOD_TO_DIARY_REQUEST = 'ADD_FOOD_TO_DIARY_REQUEST';
+export const addFoodToDiaryRequest = () => ({
+  type: ADD_FOOD_TO_DIARY_REQUEST
+});
+
+export const ADD_FOOD_TO_DIARY_SUCCESS = 'ADD_FOOD_TO_DIARY_SUCCESS';
+export const addFoodToDiarySuccess = diary => ({
+  type: ADD_FOOD_TO_DIARY_SUCCESS,
+  diary
+});
+
+export const ADD_FOOD_TO_DIARY_ERROR = 'ADD_FOOD_TO_DIARY_ERROR';
+export const addFoodToDiaryError = error => ({
+  type: ADD_FOOD_TO_DIARY_ERROR,
+  error
+});
+
+export const addFoodToDiary = (food, date) => (dispatch, getState)  => {
+  dispatch(addFoodToDiaryRequest());
+  const authToken = getState().auth.authToken;
+  const entries = getState().diary.entries;
+  const yyyymmdd = date.split('-').join('');
+
+  const servings = 2;
+  const meal = 'lunch';
+
+  return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ entries: [...entries, { food, servings, meal }] })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(diary => dispatch(addFoodToDiarySuccess(diary)))
+    .catch(err => {
+      dispatch(addFoodToDiaryError(err));
+    });
+};

@@ -4,13 +4,13 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
-// import { addFoodToDiary } from '../actions/diary-actions';
+import { addFoodToDiary } from '../actions/diary-actions';
 
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
     return this.props.dispatch(addNewFood(newFood))
-      // .then(res => this.props.dispatch(addFoodToDiary(res.food)))
+      .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
       .then(this.props.history.push('/dashboard/add'));
   }
 

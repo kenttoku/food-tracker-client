@@ -14,6 +14,30 @@ export class Dashboard extends React.Component {
   }
 
   render() {
+    const formattedEntries = {
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      other: []
+    };
+
+    this.props.entries.forEach(entry => {
+      console.log(entry);
+      formattedEntries[entry.meal].push({
+        name: entry.food.name,
+        id: entry._id
+      });
+    });
+
+    const breakfastElements = formattedEntries.breakfast.map(entry => {
+      return <li key={entry.id}>{entry.name}</li>;
+    });
+
+    const lunchElements = formattedEntries.lunch.map(entry => {
+      console.log(entry);
+      return <li key={entry.id}>{entry.name}</li>;
+    });
+
     return (
       <div className="dashboard">
         <div className="dashboard-username">
@@ -22,6 +46,7 @@ export class Dashboard extends React.Component {
         <div className="entries">
           <h3>Breakfast</h3>
           <h3>Lunch</h3>
+          <ul>{lunchElements}</ul>
           <h3>Dinner</h3>
           <h3>Other</h3>
         </div>
