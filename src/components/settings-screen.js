@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import SettingsForm from './settings-form';
 import requiresLogin from './requires-login';
 
 class SettingsScreen extends React.Component {
@@ -10,7 +11,7 @@ class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <div>Settings - {this.props.currentUser.username}</div>
+      <SettingsForm />
     );
   }
 }
