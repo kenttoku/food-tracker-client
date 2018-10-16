@@ -4,14 +4,15 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
-import { addFoodToDiary } from '../actions/diary-actions';
+import { addFoodToDiary, setEntries } from '../actions/diary-actions';
 
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
-    const { date, meal, ...newFood } = values;
+    const { date, ...newFood } = values;
     return this.props.dispatch(addNewFood(newFood))
-      .then(res => this.props.dispatch(addFoodToDiary(res.food, meal, date)))
-      .then(this.props.history.push('/dashboard/add'));
+      .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
+      .then(() => this.props.dispatch(setEntries()))
+      .then(this.props.history.push('/dashboard'));
   }
 
   render() {
@@ -27,17 +28,6 @@ export class NewFoodForm extends React.Component {
           type="date"
           name="date"
         />
-        <label htmlFor="meal">Meal</label>
-        <Field
-          component={Input}
-          element="select"
-          name="meal"
-        >
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="other">Other</option>
-        </Field>
         <label htmlFor="name">Name</label>
         <Field
           component={Input}

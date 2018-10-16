@@ -14,53 +14,21 @@ export class Dashboard extends React.Component {
       .then(() => this.props.dispatch(setEntries()));
   }
 
-  formatEntries(entries) {
-    const formattedEntries = {
-      breakfast: [],
-      lunch: [],
-      dinner: [],
-      other: []
-    };
-
-    entries.forEach(entry => {
-      formattedEntries[entry.meal].push({
-        name: entry.food.name,
-        id: entry._id
-      });
-    });
-
-    return formattedEntries;
-  }
-
   deleteEntry(entryId) {
     this.props.dispatch(deleteFoodFromDiary(entryId))
       .then(() => this.props.dispatch(setEntries()));
   }
 
   render() {
-    const createListElement = (entry) => {
-      return (<li key={entry.id} entry-id={entry.id}>{entry.name} -
+    const entriesElements = this.props.entries.map(entry => {
+      return (<li key={entry._id}>{entry.food.name} -
         <span
           className="deleteEntryButton"
-          entry-id={entry.id}
-          onClick={ () => this.deleteEntry(entry.id)}
+          onClick={ () => this.deleteEntry(entry._id)}
         >
           [delete]
         </span>
       </li>);
-    };
-    const formattedEntries = this.formatEntries(this.props.entries);
-    const breakfastElements = formattedEntries.breakfast.map(entry => {
-      return createListElement(entry);
-    });
-    const lunchElements = formattedEntries.lunch.map(entry => {
-      return createListElement(entry);
-    });
-    const dinnerElements = formattedEntries.dinner.map(entry => {
-      return createListElement(entry);
-    });
-    const otherElements = formattedEntries.other.map(entry => {
-      return createListElement(entry);
     });
 
     return (
@@ -69,14 +37,7 @@ export class Dashboard extends React.Component {
           Username: {this.props.username}
         </div>
         <div className="entries">
-          <h3>Breakfast</h3>
-          <ul>{breakfastElements}</ul>
-          <h3>Lunch</h3>
-          <ul>{lunchElements}</ul>
-          <h3>Dinner</h3>
-          <ul>{dinnerElements}</ul>
-          <h3>Other</h3>
-          <ul>{otherElements}</ul>
+          <ul>{entriesElements}</ul>
         </div>
       </div>
     );

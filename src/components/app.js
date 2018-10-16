@@ -9,6 +9,7 @@ import LandingPage from './landing-page';
 import Navbar from './navbar';
 import NewFoodForm from './new-food-form';
 import RegistrationPage from './registration-page';
+import SettingsScreen from './settings-screen';
 import { refreshAuthToken } from '../actions/auth-actions';
 
 export class App extends React.Component {
@@ -50,6 +51,7 @@ export class App extends React.Component {
         <Switch>
           <Route path="/dashboard/add" component={AddFoodScreen} />
           <Route path="/dashboard/newfood" component={NewFoodForm} />
+          <Route path="/dashboard/settings" component={SettingsScreen} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
         <Navbar />

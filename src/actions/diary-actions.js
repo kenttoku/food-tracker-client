@@ -67,13 +67,11 @@ export const addFoodToDiaryError = error => ({
   error
 });
 
-export const addFoodToDiary = (food, meal, date) => (dispatch, getState)  => {
+export const addFoodToDiary = (food, date) => (dispatch, getState)  => {
   dispatch(addFoodToDiaryRequest());
   const authToken = getState().auth.authToken;
   const entries = getState().diary.entries;
-  const yyyymmdd = date.split('-').join('');
-
-  const servings = 1; // FIXME: Not being used. Delete later?
+  const yyyymmdd = date.toString().split('-').join('');
 
   return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
     method: 'PATCH',
@@ -81,7 +79,7 @@ export const addFoodToDiary = (food, meal, date) => (dispatch, getState)  => {
       Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ entries: [...entries, { food, servings, meal }] })
+    body: JSON.stringify({ entries: [...entries, { food }] })
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
