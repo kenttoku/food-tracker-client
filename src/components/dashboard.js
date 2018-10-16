@@ -3,30 +3,14 @@ import { connect } from 'react-redux';
 
 import requiresLogin from './requires-login';
 import {
-  setDate,
-  fetchDiaries,
-  addNewDiary,
+  fetchDiary,
   setEntries
 } from '../actions/diary-actions';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    if (!this.props.date) {
-      const date = new Date();
-      this.props.dispatch(setDate(date));
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      this.props.dispatch(fetchDiaries(year, month, day))
-        .then(res => {
-          if (!res.diaries[0]) {
-            this.props.dispatch(addNewDiary(year, month, day));
-          } else {
-            return;
-          }
-        })
-        .then(() => this.props.dispatch(setEntries()));
-    }
+    this.props.dispatch(fetchDiary(this.props.date))
+      .then(() => this.props.dispatch(setEntries()));
   }
 
   render() {
@@ -50,6 +34,7 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     date: state.diary.date,
+    currentDiary: state.diary.currentDiary,
     diaries: state.diary.diaries,
     entries: state.diary.entries,
     loading: state.diary.loading,
