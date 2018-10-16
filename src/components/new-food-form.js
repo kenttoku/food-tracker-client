@@ -8,9 +8,9 @@ import { addFoodToDiary } from '../actions/diary-actions';
 
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
-    const { date, ...newFood } = values;
+    const { date, meal, ...newFood } = values;
     return this.props.dispatch(addNewFood(newFood))
-      .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
+      .then(res => this.props.dispatch(addFoodToDiary(res.food, meal, date)))
       .then(this.props.history.push('/dashboard/add'));
   }
 
@@ -26,8 +26,18 @@ export class NewFoodForm extends React.Component {
           component={Input}
           type="date"
           name="date"
-          value="2017-06-01"
         />
+        <label htmlFor="meal">Meal</label>
+        <Field
+          component={Input}
+          element="select"
+          name="meal"
+        >
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="other">Other</option>
+        </Field>
         <label htmlFor="name">Name</label>
         <Field
           component={Input}
@@ -122,6 +132,7 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       date,
+      meal: 'breakfast',
       fruits: 0,
       vegetables: 0,
       wholeGrains: 0,

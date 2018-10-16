@@ -67,14 +67,13 @@ export const addFoodToDiaryError = error => ({
   error
 });
 
-export const addFoodToDiary = (food, date) => (dispatch, getState)  => {
+export const addFoodToDiary = (food, meal, date) => (dispatch, getState)  => {
   dispatch(addFoodToDiaryRequest());
   const authToken = getState().auth.authToken;
   const entries = getState().diary.entries;
   const yyyymmdd = date.split('-').join('');
 
   const servings = 2;
-  const meal = 'lunch';
 
   return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
     method: 'PATCH',
