@@ -36,7 +36,6 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === ADD_NEW_FOOD_SUCCESS) {
-    console.log('success');
     return Object.assign({}, state, {
       foodList: [action.food, ...state.foodList],
       loading: false,

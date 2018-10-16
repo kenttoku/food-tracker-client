@@ -45,9 +45,7 @@ export const fetchDiary = (yyyymmdd) => (dispatch, getState)  => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(diary => dispatch(fetchDiarySuccess(diary)))
-    .catch(err => {
-      dispatch(fetchDiaryError(err));
-    });
+    .catch(err => dispatch(fetchDiaryError(err)));
 };
 
 export const ADD_FOOD_TO_DIARY_REQUEST = 'ADD_FOOD_TO_DIARY_REQUEST';
@@ -84,9 +82,7 @@ export const addFoodToDiary = (food, date) => (dispatch, getState)  => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(diary => dispatch(addFoodToDiarySuccess(diary)))
-    .catch(err => {
-      dispatch(addFoodToDiaryError(err));
-    });
+    .catch(err => dispatch(addFoodToDiaryError(err)));
 };
 
 export const DELETE_FOOD_FROM_DIARY_REQUEST = 'DELETE_FOOD_FROM_DIARY_REQUEST';
@@ -125,7 +121,5 @@ export const deleteFoodFromDiary = (entryId) => (dispatch, getState)  => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(diary => dispatch(deleteFoodFromDiarySuccess(diary)))
-    .catch(err => {
-      dispatch(deleteFoodFromDiaryError(err));
-    });
+    .catch(err =>  dispatch(deleteFoodFromDiaryError(err)));
 };
