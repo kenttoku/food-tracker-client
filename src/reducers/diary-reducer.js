@@ -30,6 +30,7 @@ export default function reducer(state = initialState, action) {
       date: action.date
     });
   } else if (action.type === SET_ENTRIES) {
+
     return Object.assign({}, state, {
       entries: state.currentDiary.entries
     });

@@ -13,7 +13,7 @@ export class Dashboard extends React.Component {
       .then(() => this.props.dispatch(setEntries()));
   }
 
-  render() {
+  formatEntries(entries) {
     const formattedEntries = {
       breakfast: [],
       lunch: [],
@@ -21,20 +21,28 @@ export class Dashboard extends React.Component {
       other: []
     };
 
-    this.props.entries.forEach(entry => {
-      console.log(entry);
+    entries.forEach(entry => {
       formattedEntries[entry.meal].push({
         name: entry.food.name,
         id: entry._id
       });
     });
 
+    return formattedEntries;
+  }
+
+  render() {
+    const formattedEntries = this.formatEntries(this.props.entries);
     const breakfastElements = formattedEntries.breakfast.map(entry => {
       return <li key={entry.id}>{entry.name}</li>;
     });
-
     const lunchElements = formattedEntries.lunch.map(entry => {
-      console.log(entry);
+      return <li key={entry.id}>{entry.name}</li>;
+    });
+    const dinnerElements = formattedEntries.dinner.map(entry => {
+      return <li key={entry.id}>{entry.name}</li>;
+    });
+    const otherElements = formattedEntries.other.map(entry => {
       return <li key={entry.id}>{entry.name}</li>;
     });
 
@@ -45,10 +53,13 @@ export class Dashboard extends React.Component {
         </div>
         <div className="entries">
           <h3>Breakfast</h3>
+          <ul>{breakfastElements}</ul>
           <h3>Lunch</h3>
           <ul>{lunchElements}</ul>
           <h3>Dinner</h3>
+          <ul>{dinnerElements}</ul>
           <h3>Other</h3>
+          <ul>{otherElements}</ul>
         </div>
       </div>
     );
