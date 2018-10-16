@@ -8,6 +8,7 @@ export function LoginPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
+
   return (
     <div className="home">
       <h2>Register</h2>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import requiresLogin from './requires-login';
+// Actions
 import {
   fetchDiary,
   setEntries,
@@ -47,11 +47,7 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     date: state.diary.date,
-    currentDiary: state.diary.currentDiary,
-    diaries: state.diary.diaries,
     entries: state.diary.entries,
-    loading: state.diary.loading,
-    error: state.diary.error,
     username: state.auth.currentUser.username
   };
 };

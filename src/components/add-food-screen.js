@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import requiresLogin from './requires-login';
+// Actions
 import { addFoodToDiary, setEntries } from '../actions/diary-actions';
 import { fetchAllFood } from '../actions/food-actions';
-import requiresLogin from './requires-login';
 
 class AddFoodScreen extends React.Component {
   componentDidMount() {
@@ -14,7 +14,6 @@ class AddFoodScreen extends React.Component {
   addFood(foodId) {
     const food = this.props.foodList.find(food => food.id === foodId);
     const date = this.props.date;
-    console.log(food);
     return this.props.dispatch(addFoodToDiary(food, date))
       .then(() => this.props.dispatch(setEntries()))
       .then(this.props.history.push('/dashboard'));
@@ -30,11 +29,10 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
-        <div>[Search Bar Here]</div>
+        <Link to="/dashboard/newfood">New Food</Link>
         <ul>
           {foodListElements}
         </ul>
-        <Link to="/dashboard/newfood">New Food</Link>
       </div>
     );
   }
