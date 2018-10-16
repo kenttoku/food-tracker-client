@@ -22,10 +22,13 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  // console.log(action);
   if (action.type === SET_DATE) {
     return Object.assign({}, state, {
       date: action.date
+    });
+  } else if (action.type === SET_ENTRIES) {
+    return Object.assign({}, state, {
+      entries: state.currentDiary.entries
     });
   } else if (action.type === FETCH_DIARY_REQUEST) {
     return Object.assign({}, state, {
@@ -42,11 +45,6 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error
-    });
-  } else if (action.type === SET_ENTRIES) {
-    console.log(state);
-    return Object.assign({}, state, {
-      entries: state.currentDiary.entries
     });
   }
   return state;

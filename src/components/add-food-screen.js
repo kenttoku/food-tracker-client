@@ -28,7 +28,8 @@ class AddFoodScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    foodList: state.food.foodList
+    foodList: state.food.foodList,
+    date: state.diary.date
   };
 };
 

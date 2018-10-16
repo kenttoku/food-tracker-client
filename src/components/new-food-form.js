@@ -1,13 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
+// import { addFoodToDiary } from '../actions/diary-actions';
 
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
-    const newFood = { ...values };
+    const { date, ...newFood } = values;
     return this.props.dispatch(addNewFood(newFood))
+      // .then(res => this.props.dispatch(addFoodToDiary(res.food)))
       .then(this.props.history.push('/dashboard/add'));
   }
 
@@ -18,12 +21,20 @@ export class NewFoodForm extends React.Component {
         onSubmit={this.props.handleSubmit(values =>
           this.onSubmit(values)
         )}>
+        <label htmlFor="date">Date</label>
+        <Field
+          component={Input}
+          type="date"
+          name="date"
+          value="2017-06-01"
+        />
         <label htmlFor="name">Name</label>
         <Field
           component={Input}
           type="text"
           name="name"
           validate={[required, nonEmpty]}
+          value="0"
         />
         <label htmlFor="fruits">Fruits</label>
         <Field
@@ -105,8 +116,30 @@ export class NewFoodForm extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'registration',
+const mapStateToProps = state => {
+  let date = state.diary.date.toString();
+  date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+  return {
+    initialValues: {
+      date,
+      fruits: 0,
+      vegetables: 0,
+      wholeGrains: 0,
+      leanProteins: 0,
+      nutsAndSeeds: 0,
+      dairy: 0,
+      refinedGrains: 0,
+      fattyProteins: 0,
+      sweets: 0,
+      friedFoods: 0
+    }
+  };
+};
+
+const form = reduxForm({
+  form: 'new-food',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('registration', Object.keys(errors)[0]))
-})(NewFoodForm);
+    dispatch(focus('new-food', Object.keys(errors)[0]))
+});
+
+export default connect(mapStateToProps)((form)(NewFoodForm));
