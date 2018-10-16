@@ -73,7 +73,7 @@ export const addFoodToDiary = (food, meal, date) => (dispatch, getState)  => {
   const entries = getState().diary.entries;
   const yyyymmdd = date.split('-').join('');
 
-  const servings = 2;
+  const servings = 1; // FIXME: Not being used. Delete later?
 
   return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
     method: 'PATCH',
@@ -88,5 +88,46 @@ export const addFoodToDiary = (food, meal, date) => (dispatch, getState)  => {
     .then(diary => dispatch(addFoodToDiarySuccess(diary)))
     .catch(err => {
       dispatch(addFoodToDiaryError(err));
+    });
+};
+
+export const DELETE_FOOD_FROM_DIARY_REQUEST = 'DELETE_FOOD_FROM_DIARY_REQUEST';
+export const deleteFoodFromDiaryRequest = () => ({
+  type: DELETE_FOOD_FROM_DIARY_REQUEST
+});
+
+export const DELETE_FOOD_FROM_DIARY_SUCCESS = 'DELETE_FOOD_FROM_DIARY_SUCCESS';
+export const deleteFoodFromDiarySuccess = diary => ({
+  type: DELETE_FOOD_FROM_DIARY_SUCCESS,
+  diary
+});
+
+export const DELETE_FOOD_FROM_DIARY_ERROR = 'DELETE_FOOD_FROM_DIARY_ERROR';
+export const deleteFoodFromDiaryError = error => ({
+  type: DELETE_FOOD_FROM_DIARY_ERROR,
+  error
+});
+
+export const deleteFoodFromDiary = (entryId) => (dispatch, getState)  => {
+  dispatch(deleteFoodFromDiaryRequest());
+  const authToken = getState().auth.authToken;
+  const entries = getState().diary.entries.filter(entry => {
+    return entry._id !== entryId;
+  });
+  const yyyymmdd = getState().diary.currentDiary.yyyymmdd;
+
+  return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ entries })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(diary => dispatch(deleteFoodFromDiarySuccess(diary)))
+    .catch(err => {
+      dispatch(deleteFoodFromDiaryError(err));
     });
 };

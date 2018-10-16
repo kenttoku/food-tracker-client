@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import {
   fetchDiary,
-  setEntries
+  setEntries,
+  deleteFoodFromDiary
 } from '../actions/diary-actions';
 
 export class Dashboard extends React.Component {
@@ -31,19 +32,35 @@ export class Dashboard extends React.Component {
     return formattedEntries;
   }
 
+  deleteEntry(entryId) {
+    this.props.dispatch(deleteFoodFromDiary(entryId))
+      .then(() => this.props.dispatch(setEntries()));
+  }
+
   render() {
+    const createListElement = (entry) => {
+      return (<li key={entry.id} entry-id={entry.id}>{entry.name} -
+        <span
+          className="deleteEntryButton"
+          entry-id={entry.id}
+          onClick={ () => this.deleteEntry(entry.id)}
+        >
+          [delete]
+        </span>
+      </li>);
+    };
     const formattedEntries = this.formatEntries(this.props.entries);
     const breakfastElements = formattedEntries.breakfast.map(entry => {
-      return <li key={entry.id}>{entry.name}</li>;
+      return createListElement(entry);
     });
     const lunchElements = formattedEntries.lunch.map(entry => {
-      return <li key={entry.id}>{entry.name}</li>;
+      return createListElement(entry);
     });
     const dinnerElements = formattedEntries.dinner.map(entry => {
-      return <li key={entry.id}>{entry.name}</li>;
+      return createListElement(entry);
     });
     const otherElements = formattedEntries.other.map(entry => {
-      return <li key={entry.id}>{entry.name}</li>;
+      return createListElement(entry);
     });
 
     return (
