@@ -1,24 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
-
+// Components
 import AddFoodScreen from './add-food-screen';
 import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
+import LoginPage from './login-page';
 import Navbar from './navbar';
 import NewFoodForm from './new-food-form';
 import RegistrationPage from './registration-page';
 import SettingsScreen from './settings-screen';
+// Actions
 import { refreshAuthToken } from '../actions/auth-actions';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
-      // When we are logged in, refresh the auth token periodically
       this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
-      // Stop refreshing when we log out
       this.stopPeriodicRefresh();
     }
   }
@@ -48,6 +48,7 @@ export class App extends React.Component {
         <HeaderBar />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={RegistrationPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Switch>
           <Route path="/dashboard/add" component={AddFoodScreen} />
           <Route path="/dashboard/newfood" component={NewFoodForm} />
