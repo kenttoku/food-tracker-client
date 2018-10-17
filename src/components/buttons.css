@@ -1,0 +1,28 @@
+.btn-blue, .btn-black {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  display: inline-block;
+  padding: 0 26px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle;
+  user-select: none;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+  color: #FFF;
+}
+
+.btn-blue {
+  background-color: #2196F3;
+}
+
+.btn-black {
+  background-color: #424242;
+}

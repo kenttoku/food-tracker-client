@@ -13,7 +13,7 @@ export function LoginPage(props) {
     <div className="home">
       <h2>Register</h2>
       <LoginForm />
-      <Link to="/">Back</Link>
+      <Link to="/"><button className="btn-black">Black</button></Link>
     </div>
   );
 }
