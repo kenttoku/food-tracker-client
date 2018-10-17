@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
 // Components
 import AddFoodScreen from './add-food-screen';
+import Calendar from './calendar';
 import Dashboard from './dashboard';
 import EditFoodForm from './edit-food-form';
 import HeaderBar from './header-bar';
@@ -64,6 +65,7 @@ export class App extends React.Component {
           <Route path="/dashboard/edit/:date/:entryId" component={EditFoodForm} />
           <Route path="/dashboard/add" component={AddFoodScreen} />
           <Route path="/dashboard/newfood" component={NewFoodForm} />
+          <Route path="/dashboard/calendar" component={Calendar} />
           <Route path="/dashboard/settings" component={SettingsScreen} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
