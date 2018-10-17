@@ -1,5 +1,4 @@
 import React from 'react';
-import dateFns from 'date-fns';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
@@ -11,12 +10,12 @@ import {
   deleteFoodFromDiary
 } from '../actions/diary-actions';
 
-export class Dashboard extends React.Component {
+export class Archive extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchDiary(this.props.date))
       .then(() => this.props.dispatch(setEntries()));
     this.props.dispatch(fetchAllDiaries())
-      .then(() => this.props.dispatch(setEntries()));
+      .then(res => console.log(res));
   }
 
   deleteEntry(entryId) {
@@ -50,14 +49,12 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  let date = new Date();
-  date = dateFns.format(date, 'YYYYMMDD');
+const mapStateToProps = (state, props) => {
   return {
-    date: state.diary.date,
+    date: props.match.params.date,
     entries: state.diary.entries,
     username: state.auth.currentUser.username
   };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(Archive));

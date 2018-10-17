@@ -53,11 +53,17 @@ class Calendar extends React.Component {
     let days = [];
     let day = startDate;
     let formattedDate = "";
-    console.log(this.props.diaries)
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
+        let points = 0
+        const cellDiary = this.props.diaries.find(diary => {
+          return diary.yyyymmdd.toString() === dateFns.format(day, 'YYYYMMDD')
+        })
+        if (cellDiary) {
+          points = cellDiary.points
+        };
         days.push(
           <div
             className={`col cell ${
@@ -69,7 +75,7 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(cloneDay)}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">10</span>
+            <span className="bg">{points}</span>
           </div>
         );
         day = dateFns.addDays(day, 1);
@@ -86,7 +92,7 @@ class Calendar extends React.Component {
 
   onDateClick = day => {
     const formattedDate = dateFns.format(day, 'YYYYMMDD');
-    this.props.history.push(`/dashboard/${formattedDate}`)
+    this.props.history.push(`/dashboard/archive/${formattedDate}`)
     // this.setState({
     //   selectedDate: day
     // });
