@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
@@ -16,7 +17,7 @@ class AddFoodScreen extends React.Component {
     const date = this.props.date;
     return this.props.dispatch(addFoodToDiary(food, date))
       .then(() => this.props.dispatch(setEntries()))
-      .then(this.props.history.push('/dashboard'));
+      .then(this.props.history.push(`/dashboard/${this.props.date}`));
   }
 
   render() {
@@ -29,8 +30,7 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
-        {/* // FIXME: Add Date */}
-        <Link to="/dashboard/newfood">New Food</Link>
+        <Link to={`/dashboard/${this.props.date}/newfood`}>New Food</Link>
         <ul>
           {foodListElements}
         </ul>
@@ -39,10 +39,14 @@ class AddFoodScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+  let date = dateFns.format(new Date(), 'YYYYMMDD');
+  if (props.match.params.date) {
+    date = props.match.params.date;
+  }
   return {
+    date,
     foodList: state.food.foodList,
-    date: state.diary.date // FIXME: Use date in URL
   };
 };
 

@@ -34,7 +34,6 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state, props) => {
   let date = dateFns.format(new Date(), 'YYYYMMDD');
-  console.log(props.match.params.date);
   if (props.match.params.date) {
     date = props.match.params.date;
   }

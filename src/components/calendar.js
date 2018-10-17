@@ -1,8 +1,12 @@
 import React from "react";
 import dateFns from "date-fns";
 import { connect } from 'react-redux'
-import './calendar.css'
+import { fetchAllDiaries} from '../actions/diary-actions';
 class Calendar extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchAllDiaries());
+  }
+
   renderHeader() {
     const dateFormat = "MMMM YYYY";
 

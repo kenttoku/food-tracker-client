@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
@@ -14,10 +15,11 @@ const minValue0 = minValue(0);
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
+    const urlDate = date.split('-').join('');
     return this.props.dispatch(addNewFood(newFood))
       .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
       .then(() => this.props.dispatch(setEntries()))
-      .then(this.props.history.push('/dashboard'));
+      .then(this.props.history.push(`/dashboard/${urlDate}`));
   }
 
   render() {
@@ -66,14 +68,15 @@ export class NewFoodForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  // FIXME: Use date in url
-  let date = state.diary.date.toString();
-  date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+const mapStateToProps = (state, props) => {
+  let date = dateFns.format(new Date(), 'YYYY-MM-DD');
+  if (props.match.params.date) {
+    date = props.match.params.date;
+    date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+  }
   return {
     initialValues: {
       date,
-      meal: 'breakfast',
       fruits: 0,
       vegetables: 0,
       wholeGrains: 0,
