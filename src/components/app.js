@@ -15,6 +15,8 @@ import RegistrationPage from './registration-page';
 import SettingsScreen from './settings-screen';
 // Actions
 import { refreshAuthToken } from '../actions/auth-actions';
+// Styling
+import './app.css';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -46,7 +48,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app container">
         <HeaderBar />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={RegistrationPage} />
