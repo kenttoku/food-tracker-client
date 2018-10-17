@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
-import { addNewFood, editFood } from '../actions/food-actions';
+import { addNewFood } from '../actions/food-actions';
 // Actions
 import { addFoodToDiary, deleteFoodFromDiary, setEntries } from '../actions/diary-actions';
 
