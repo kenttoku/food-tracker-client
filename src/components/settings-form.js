@@ -1,19 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus } from 'redux-form';
-import { registerUser } from '../actions/users-actions';
-import { login } from '../actions/auth-actions';
+import { Field, reduxForm, focus, SubmissionError } from 'redux-form';
+import jwtDecode from 'jwt-decode';
+// Components
 import Input from './input';
+// Actions
+import { setAuthToken, authSuccess, authError } from '../actions/auth-actions';
+import { updateUser } from '../actions/users-actions';
+// Other
 import { required, nonEmpty, isTrimmed } from '../validators';
+import { saveAuthToken } from '../local-storage';
 
 export class SettingsForm extends React.Component {
   onSubmit(values) {
-    console.log('hello');
-    // const { username, password } = values;
-    // const user = { username, password };
-    // return this.props
-    //   .dispatch(registerUser(user))
-    //   .then(() => this.props.dispatch(login(username, password)));
+    const newUsername = values.username;
+    const { password, email, goal } = values;
+    const updatedUser = {
+      newUsername,
+      password,
+      email,
+      goal,
+      username: this.props.username
+    };
+    return this.props
+      .dispatch(updateUser(updatedUser))
+      .then(authToken => {
+        if (authToken) {
+          const decodedToken = jwtDecode(authToken);
+          this.props.dispatch(authSuccess(decodedToken.user));
+          this.props.dispatch(this.props.dispatch(setAuthToken(authToken)));
+          saveAuthToken(authToken);
+        } else {
+          throw new Error('Invalid Entry');
+        }
+      })
+      .catch(err => {
+        const { message } = err;
+        return Promise.reject(
+          new SubmissionError({
+            _error: message
+          })
+        );
+      });
+
+
   }
 
   render() {
@@ -42,6 +72,14 @@ export class SettingsForm extends React.Component {
           type="number"
           name="goal"
         />
+        <label htmlFor="password">Password</label>
+        <Field
+          component={Input}
+          type="password"
+          name="password"
+          id="password"
+          validate={[required, nonEmpty]}
+        />
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
@@ -54,6 +92,7 @@ export class SettingsForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    username: state.auth.currentUser.username,
     initialValues: {
       username: state.auth.currentUser.username,
       email: state.auth.currentUser.email,

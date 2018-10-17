@@ -16,7 +16,28 @@ export const registerUser = user => dispatch => {
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
-        // Convert ValidationErrors into SubmissionErrors for Redux Form
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
+};
+
+export const updateUser = user => dispatch => {
+  return fetch(`${API_BASE_URL}/users`, {
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
         return Promise.reject(
           new SubmissionError({
             [location]: message
