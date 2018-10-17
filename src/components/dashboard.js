@@ -4,16 +4,19 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 // Actions
 import {
+  fetchAllDiaries,
   fetchDiary,
   setEntries,
   deleteFoodFromDiary
 } from '../actions/diary-actions';
 
 export class Dashboard extends React.Component {
-  // componentDidMount() {
-  //   this.props.dispatch(fetchDiary(this.props.date))
-  //     .then(() => this.props.dispatch(setEntries()));
-  // }
+  componentDidMount() {
+    this.props.dispatch(fetchDiary(this.props.date))
+      .then(() => this.props.dispatch(setEntries()));
+    this.props.dispatch(fetchAllDiaries())
+      .then(res => console.log(res));
+  }
 
   deleteEntry(entryId) {
     this.props.dispatch(deleteFoodFromDiary(entryId))

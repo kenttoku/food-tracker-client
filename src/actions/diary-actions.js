@@ -123,3 +123,36 @@ export const deleteFoodFromDiary = (entryId) => (dispatch, getState)  => {
     .then(diary => dispatch(deleteFoodFromDiarySuccess(diary)))
     .catch(err =>  dispatch(deleteFoodFromDiaryError(err)));
 };
+
+export const FETCH_ALL_DIARIES_REQUEST = 'FETCH_ALL_DIARIES_REQUEST';
+export const fetchAllDiariesRequest = () => ({
+  type: FETCH_DIARY_REQUEST
+});
+
+export const FETCH_ALL_DIARIES_SUCCESS = 'FETCH_ALL_DIARIES_SUCCESS';
+export const fetchAllDiariesSuccess = diaries => ({
+  type: FETCH_ALL_DIARIES_SUCCESS,
+  diaries
+});
+
+export const FETCH_ALL_DIARIES_ERROR = 'FETCH_ALL_DIARIES_ERROR';
+export const fetchAllDiariesError = error => ({
+  type: FETCH_ALL_DIARIES_ERROR,
+  error
+});
+
+export const fetchAllDiaries = () => (dispatch, getState)  => {
+  dispatch(fetchAllDiariesRequest());
+  const authToken = getState().auth.authToken;
+
+  return fetch(`${API_BASE_URL}/diaries`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(diaries => dispatch(fetchAllDiariesSuccess(diaries)))
+    .catch(err => dispatch(fetchAllDiariesError(err)));
+};

@@ -9,7 +9,10 @@ import {
   DELETE_FOOD_FROM_DIARY_SUCCESS,
   DELETE_FOOD_FROM_DIARY_ERROR,
   SET_DATE,
-  SET_ENTRIES
+  SET_ENTRIES,
+  FETCH_ALL_DIARIES_SUCCESS,
+  FETCH_ALL_DIARIES_REQUEST,
+  FETCH_ALL_DIARIES_ERROR
 } from '../actions/diary-actions';
 
 const date = new Date();
@@ -81,6 +84,22 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === DELETE_FOOD_FROM_DIARY_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    });
+  } else if (action.type === FETCH_ALL_DIARIES_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    });
+  } else if (action.type === FETCH_ALL_DIARIES_SUCCESS) {
+    return Object.assign({}, state, {
+      diaries: action.diaries,
+      loading: false,
+      error: null
+    });
+  } else if (action.type === FETCH_ALL_DIARIES_ERROR) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error

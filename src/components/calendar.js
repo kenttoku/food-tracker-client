@@ -53,7 +53,7 @@ class Calendar extends React.Component {
     let days = [];
     let day = startDate;
     let formattedDate = "";
-
+    console.log(this.props.diaries)
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
@@ -69,7 +69,7 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(cloneDay)}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">{formattedDate}</span>
+            <span className="bg">10</span>
           </div>
         );
         day = dateFns.addDays(day, 1);
@@ -115,9 +115,10 @@ class Calendar extends React.Component {
   }
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = state => ({
   currentMonth: new Date(),
-  selectedDate: new Date()
+  selectedDate: new Date(),
+  diaries: state.diary.diaries
 })
 
 export default connect(mapStateToProps)(Calendar);
