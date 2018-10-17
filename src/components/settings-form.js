@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 // Components
 import Input from './input';
 // Actions
-import { setAuthToken, authSuccess, authError } from '../actions/auth-actions';
+import { setAuthToken, authSuccess } from '../actions/auth-actions';
 import { updateUser } from '../actions/users-actions';
 // Other
 import { required, nonEmpty, isTrimmed } from '../validators';

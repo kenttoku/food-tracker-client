@@ -70,3 +70,20 @@ export const addNewFood = (newFood) => (dispatch, getState) => {
       dispatch(addNewFoodError(err));
     });
 };
+
+export const EDIT_FOOD_REQUEST = 'EDIT_FOOD_REQUEST';
+export const editFoodRequest = () => ({
+  type: EDIT_FOOD_REQUEST
+});
+
+export const EDIT_FOOD_SUCCESS = 'EDIT_FOOD_SUCCESS';
+export const editFoodSuccess = food => ({
+  type: EDIT_FOOD_SUCCESS,
+  food
+});
+
+export const EDIT_FOOD_ERROR = 'EDIT_FOOD_ERROR';
+export const editFoodError = error => ({
+  type: EDIT_FOOD_ERROR,
+  error
+});

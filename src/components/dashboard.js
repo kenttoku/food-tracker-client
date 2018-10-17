@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 // Actions
@@ -9,10 +10,10 @@ import {
 } from '../actions/diary-actions';
 
 export class Dashboard extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(fetchDiary(this.props.date))
-      .then(() => this.props.dispatch(setEntries()));
-  }
+  // componentDidMount() {
+  //   this.props.dispatch(fetchDiary(this.props.date))
+  //     .then(() => this.props.dispatch(setEntries()));
+  // }
 
   deleteEntry(entryId) {
     this.props.dispatch(deleteFoodFromDiary(entryId))
@@ -22,6 +23,7 @@ export class Dashboard extends React.Component {
   render() {
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id}>{entry.food.name} -
+        <Link to={`/dashboard/edit/${this.props.date}/${entry._id}/`}>Edit</Link>
         <span
           className="deleteEntryButton"
           onClick={ () => this.deleteEntry(entry._id)}
