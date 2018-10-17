@@ -13,10 +13,14 @@ import {
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchDiary(this.props.date))
-      .then(() => this.props.dispatch(setEntries()));
-    this.props.dispatch(fetchAllDiaries())
-      .then(() => this.props.dispatch(setEntries()));
+    // FIXME: Error when :date in url is invalid
+    if (dateFns.parse(this.props.match.params.date) !== 'Invalid Date') {
+      console.log(this.props.date);
+      this.props.dispatch(fetchAllDiaries());
+      this.props.dispatch(fetchDiary(this.props.date))
+        .then(() => this.props.dispatch(setEntries()))
+        .then(console.log('set entries'));
+    }
   }
 
   deleteEntry(entryId) {
@@ -27,7 +31,7 @@ export class Dashboard extends React.Component {
   render() {
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id}>{entry.food.name} -
-        <Link to={`/dashboard/edit/${this.props.date}/${entry._id}/`}>Edit</Link>
+        <Link to={`/dashboard/${this.props.date}/edit/${entry._id}/`}>Edit</Link>
         <span
           className="deleteEntryButton"
           onClick={ () => this.deleteEntry(entry._id)}
@@ -50,8 +54,11 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const date = dateFns.format(new Date(), 'YYYYMMDD');
+const mapStateToProps = (state, props) => {
+  let date = dateFns.format(new Date(), 'YYYYMMDD');
+  if (props.match.params.date) {
+    date = props.match.params.date;
+  }
   return {
     date,
     entries: state.diary.entries,

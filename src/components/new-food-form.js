@@ -67,6 +67,7 @@ export class NewFoodForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  // FIXME: Use date in url
   let date = state.diary.date.toString();
   date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
   return {

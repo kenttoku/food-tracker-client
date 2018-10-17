@@ -92,7 +92,7 @@ class Calendar extends React.Component {
 
   onDateClick = day => {
     const formattedDate = dateFns.format(day, 'YYYYMMDD');
-    this.props.history.push(`/dashboard/archive/${formattedDate}`)
+    this.props.history.push(`/dashboard/${formattedDate}`)
     // this.setState({
     //   selectedDate: day
     // });

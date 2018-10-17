@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -13,27 +14,32 @@ import {
 
 class Navbar extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchDiary(this.props.date))
-      .then(() => this.props.dispatch(setEntries()));
-    this.props.dispatch(fetchAllDiaries())
-      .then(res => console.log(res));
+    // this.props.dispatch(fetchDiary(this.props.date))
+    //   .then(() => this.props.dispatch(setEntries()));
+    // this.props.dispatch(fetchAllDiaries())
+    //   .then(res => console.log(res));
   }
 
   render() {
     return (
       <nav className="navbar">
-        <Link to="/dashboard">Home</Link>
-        <Link to="/dashboard/add">Add Food</Link>
-        <Link to="/dashboard/calendar">Calendar</Link>
-        <Link to="/dashboard/settings">Settings</Link>
+        <Link to={`/dashboard/${this.props.date}`}>Home</Link>
+        <Link to={`/dashboard/${this.props.date}/add`}>Add Food</Link>
+        <Link to={`/dashboard/${this.props.date}/calendar`}>Calendar</Link>
+        <Link to={`/dashboard/${this.props.date}/settings`}>Settings</Link>
       </nav>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+  let date = dateFns.format(new Date(), 'YYYYMMDD');
+  console.log(props.match.params.date);
+  if (props.match.params.date) {
+    date = props.match.params.date;
+  }
   return {
-    date: state.diary.date,
+    date,
     entries: state.diary.entries,
     username: state.auth.currentUser.username
   };

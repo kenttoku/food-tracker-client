@@ -29,6 +29,7 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
+        {/* // FIXME: Add Date */}
         <Link to="/dashboard/newfood">New Food</Link>
         <ul>
           {foodListElements}
@@ -41,7 +42,7 @@ class AddFoodScreen extends React.Component {
 const mapStateToProps = state => {
   return {
     foodList: state.food.foodList,
-    date: state.diary.date
+    date: state.diary.date // FIXME: Use date in URL
   };
 };
 

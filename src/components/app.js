@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
 // Components
 import AddFoodScreen from './add-food-screen';
-import Archive from './archive';
 import Calendar from './calendar';
 import Dashboard from './dashboard';
 import EditFoodForm from './edit-food-form';
@@ -16,18 +15,8 @@ import RegistrationPage from './registration-page';
 import SettingsScreen from './settings-screen';
 // Actions
 import { refreshAuthToken } from '../actions/auth-actions';
-import {
-  fetchDiary,
-  setEntries
-} from '../actions/diary-actions';
 
 export class App extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(fetchDiary(this.props.date))
-      .then(() => this.props.dispatch(setEntries()));
-  }
-
-
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
       this.startPeriodicRefresh();
@@ -63,22 +52,20 @@ export class App extends React.Component {
         <Route exact path="/register" component={RegistrationPage} />
         <Route exact path="/login" component={LoginPage} />
         <Switch>
-          <Route path="/dashboard/edit/:date/:entryId" component={EditFoodForm} />
-          <Route path="/dashboard/archive/:date" component={Archive} />
-          <Route path="/dashboard/add" component={AddFoodScreen} />
-          <Route path="/dashboard/newfood" component={NewFoodForm} />
-          <Route path="/dashboard/calendar" component={Calendar} />
-          <Route path="/dashboard/settings" component={SettingsScreen} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/:date/calendar" component={Calendar} />
+          <Route path="/dashboard/:date/settings" component={SettingsScreen} />
+          <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />
+          <Route path="/dashboard/:date/add" component={AddFoodScreen} />
+          <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
+          <Route path="/dashboard/:date" component={Dashboard} />
         </Switch>
-        <Navbar />
+        <Route path="/dashboard/:date" component={Navbar} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  date: state.diary.date,
   hasAuthToken: state.auth.authToken !== null,
   loggedIn: state.auth.currentUser !== null
 });
