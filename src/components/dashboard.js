@@ -51,10 +51,9 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  let date = new Date();
-  date = dateFns.format(date, 'YYYYMMDD');
+  const date = dateFns.format(new Date(), 'YYYYMMDD');
   return {
-    date: state.diary.date,
+    date,
     entries: state.diary.entries,
     username: state.auth.currentUser.username
   };
