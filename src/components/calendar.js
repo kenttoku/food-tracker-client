@@ -15,7 +15,7 @@ class Calendar extends React.Component {
   renderHeader() {
     return (
       <div className="calendar-header row flex-middle">
-        <div className="col col-start">
+        <div className="col col-start" onClick={this.prevMonth}>
           <img className="calendar-icon-left" src={chevronLeft} alt="previous month" />
         </div>
         <div className="col col-center">
@@ -44,6 +44,17 @@ class Calendar extends React.Component {
     return <div className="days row">{days}</div>;
   }
 
+  getPoints(day) {
+    let points = 0;
+    const cellDiary = this.props.diaries.find(diary => {
+      return diary.yyyymmdd.toString() === dateFns.format(day, 'YYYYMMDD');
+    });
+    if (cellDiary) {
+      points = cellDiary.points;
+    }
+    return points;
+  }
+
   renderCells() {
     const { currentMonth, selectedDate } = this.props;
     const monthStart = dateFns.startOfMonth(currentMonth);
@@ -61,13 +72,7 @@ class Calendar extends React.Component {
         const cloneDay = day;
 
         // Get Points for the day
-        let points = 0;
-        const cellDiary = this.props.diaries.find(diary => {
-          return diary.yyyymmdd.toString() === dateFns.format(day, 'YYYYMMDD');
-        });
-        if (cellDiary) {
-          points = cellDiary.points;
-        }
+        let points = this.getPoints(day)
         days.push(
           <div
             className={`col cell ${
