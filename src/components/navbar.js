@@ -25,10 +25,10 @@ class Navbar extends React.Component {
         <Link to={`/dashboard/${this.props.date}/add`}>
           <img src={addButton} alt="add" /> Add
         </Link>
-        <Link to={`/dashboard/${this.props.date}/calendar`}>
+        <Link to={`/dashboard/${today}/calendar`}>
           <img src={calendarButton} alt="calendar" /> Calendar
         </Link>
-        <Link to={`/dashboard/${this.props.date}/settings`}>
+        <Link to={`/dashboard/${today}/settings`}>
           <img src={settingsButton} alt="settings" /> Settings
         </Link>
       </nav>

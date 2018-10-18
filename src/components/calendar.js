@@ -28,7 +28,7 @@ class Calendar extends React.Component {
     );
   }
 
-  // Rendering Day names
+  // Rendering Day names (Sun ~ Sat)
   renderDays() {
     const days = [];
 
@@ -51,16 +51,16 @@ class Calendar extends React.Component {
     const startDate = dateFns.startOfWeek(monthStart);
     const endDate = dateFns.endOfWeek(monthEnd);
 
-    const dateFormat = 'D';
     const rows = [];
-
     let days = [];
     let day = startDate;
     let formattedDate = '';
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
-        formattedDate = dateFns.format(day, dateFormat);
+        formattedDate = dateFns.format(day, 'D');
         const cloneDay = day;
+
+        // Get Points for the day
         let points = 0;
         const cellDiary = this.props.diaries.find(diary => {
           return diary.yyyymmdd.toString() === dateFns.format(day, 'YYYYMMDD');
@@ -99,12 +99,16 @@ class Calendar extends React.Component {
     this.props.history.push(`/dashboard/${formattedDate}`);
   }
 
-  nextMonth() {
-    // Change Calendar month
+  nextMonth = () => {
+    const month = dateFns.addMonths(this.props.currentMonth, 1)
+    const formattedDate = dateFns.format(month, 'YYYYMMDD');
+    this.props.history.push(`/dashboard/${formattedDate}/calendar`);
   }
 
-  prevMonth() {
-    // Change Calendar month
+  prevMonth = () => {
+    const month = dateFns.subMonths(this.props.currentMonth, 1)
+    const formattedDate = dateFns.format(month, 'YYYYMMDD')
+    this.props.history.push(`/dashboard/${formattedDate}/calendar`);
   }
 
   render() {
@@ -118,10 +122,17 @@ class Calendar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentMonth: new Date(),
-  selectedDate: new Date(),
-  diaries: state.diary.diaries
-});
+const mapStateToProps = (state, props) => {
+  let date = props.match.params.date;
+  if (date) {
+    date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+    date = dateFns.parse(date);
+  }
+  return {
+    currentMonth: date,
+    selectedDate: date,
+    diaries: state.diary.diaries
+  };
+};
 
 export default connect(mapStateToProps)(Calendar);
