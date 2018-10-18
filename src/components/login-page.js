@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 // Components
@@ -6,7 +7,8 @@ import LoginForm from './login-form';
 
 export function LoginPage(props) {
   if (props.loggedIn) {
-    return <Redirect to="/dashboard" />;
+    const today = dateFns.format(new Date(), 'YYYYMMDD');
+    return <Redirect to={`/dashboard/${today}`} />;
   }
 
   return (
