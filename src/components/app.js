@@ -49,6 +49,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className="app container">
+        <Route path="/dashboard/:date" component={Navbar} />
         <HeaderBar />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={RegistrationPage} />
@@ -61,7 +62,6 @@ export class App extends React.Component {
           <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
           <Route path="/dashboard/:date" component={Dashboard} />
         </Switch>
-        <Route path="/dashboard/:date" component={Navbar} />
       </div>
     );
   }

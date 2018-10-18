@@ -10,6 +10,7 @@ import settingsButton from '../assets/baseline-settings_applications-24px.svg';
 import requiresLogin from './requires-login';
 import { isValidDate } from '../actions/utils';
 
+import './navbar.css';
 class Navbar extends React.Component {
   render() {
     if (!isValidDate(this.props.date)) {
