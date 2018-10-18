@@ -10,22 +10,7 @@ import settingsButton from '../assets/baseline-settings_applications-24px.svg';
 import requiresLogin from './requires-login';
 import { isValidDate } from '../actions/utils';
 
-import {
-  fetchAllDiaries,
-  fetchDiary,
-  setEntries,
-  deleteFoodFromDiary
-} from '../actions/diary-actions';
-
 class Navbar extends React.Component {
-  componentDidMount() {
-    // this.props.dispatch(fetchDiary(this.props.date))
-    //   .then(() => this.props.dispatch(setEntries()));
-    // this.props.dispatch(fetchAllDiaries())
-    //   .then(res => console.log(res));
-  }
-
-
   render() {
     if (!isValidDate(this.props.date)) {
       return <Redirect to="/" />;

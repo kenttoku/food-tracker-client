@@ -14,7 +14,6 @@ import { isValidDate } from '../actions/utils';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    // FIXME: Error when :date in url is invalid
     if (isValidDate(this.props.date)) {
       this.props.dispatch(fetchAllDiaries());
       this.props.dispatch(fetchDiary(this.props.date))
@@ -28,7 +27,6 @@ export class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if (!isValidDate(this.props.date)) {
       return <Redirect to="/" />;
     }
