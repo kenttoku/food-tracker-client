@@ -15,13 +15,13 @@ class Calendar extends React.Component {
   renderHeader() {
     return (
       <div className="calendar-header row flex-middle">
-        <div className="col col-start" onClick={this.prevMonth}>
+        <div className="col col-start" onClick={() => this.prevMonth()}>
           <img className="calendar-icon-left" src={chevronLeft} alt="previous month" />
         </div>
         <div className="col col-center">
           <span>{dateFns.format(this.props.currentMonth, 'MMMM YYYY')}</span>
         </div>
-        <div className="col col-end" onClick={this.nextMonth}>
+        <div className="col col-end" onClick={() => this.nextMonth()}>
           <img className="calendar-icon-right" src={chevronRight} alt="next month" />
         </div>
       </div>
@@ -72,7 +72,7 @@ class Calendar extends React.Component {
         const cloneDay = day;
 
         // Get Points for the day
-        let points = this.getPoints(day)
+        let points = this.getPoints(day);
         days.push(
           <div
             className={`col cell ${
@@ -104,15 +104,15 @@ class Calendar extends React.Component {
     this.props.history.push(`/dashboard/${formattedDate}`);
   }
 
-  nextMonth = () => {
-    const month = dateFns.addMonths(this.props.currentMonth, 1)
+  nextMonth() {
+    const month = dateFns.addMonths(this.props.currentMonth, 1);
     const formattedDate = dateFns.format(month, 'YYYYMMDD');
     this.props.history.push(`/dashboard/${formattedDate}/calendar`);
   }
 
-  prevMonth = () => {
-    const month = dateFns.subMonths(this.props.currentMonth, 1)
-    const formattedDate = dateFns.format(month, 'YYYYMMDD')
+  prevMonth() {
+    const month = dateFns.subMonths(this.props.currentMonth, 1);
+    const formattedDate = dateFns.format(month, 'YYYYMMDD');
     this.props.history.push(`/dashboard/${formattedDate}/calendar`);
   }
 

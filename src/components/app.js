@@ -45,7 +45,8 @@ export class App extends React.Component {
 
     clearInterval(this.refreshInterval);
   }
-
+  // TODO: Wrap edit food form to fetch data.
+  // Fix redirect for invalid url
   render() {
     return (
       <div className="app container">
@@ -61,6 +62,7 @@ export class App extends React.Component {
           <Route path="/dashboard/:date/add" component={AddFoodScreen} />
           <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
           <Route path="/dashboard/:date" component={Dashboard} />
+          <Route path="/" component={LandingPage} />
         </Switch>
       </div>
     );
