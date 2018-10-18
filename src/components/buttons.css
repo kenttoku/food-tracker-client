@@ -1,4 +1,4 @@
-.btn-blue, .btn-black {
+.btn-blue, .btn-black, .btn-red {
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
@@ -25,4 +25,8 @@
 
 .btn-black {
   background-color: #424242;
+}
+
+.btn-red {
+  background-color: #F44336;
 }

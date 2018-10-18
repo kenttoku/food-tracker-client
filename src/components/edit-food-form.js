@@ -15,12 +15,13 @@ const minValue0 = minValue(0);
 export class EditFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
+    const urlDate = date.split('-').join('');
     return this.props.dispatch(addNewFood(newFood))
       .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
       .then(() => this.props.dispatch(setEntries()))
       .then(() => this.props.dispatch(deleteFoodFromDiary(this.props.entry._id)))
       .then(() => this.props.dispatch(setEntries()))
-      .then(this.props.history.push('/dashboard'));
+      .then(this.props.history.push(`/dashboard/${urlDate}`));
   }
 
   render() {

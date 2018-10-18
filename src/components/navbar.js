@@ -31,16 +31,16 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar">
         <Link to={`/dashboard/${today}`}>
-          <img src={homeButton} alt="home" />
+          <img src={homeButton} alt="home" />Home
         </Link>
         <Link to={`/dashboard/${this.props.date}/add`}>
-          <img src={addButton} alt="add" />
+          <img src={addButton} alt="add" /> Add
         </Link>
         <Link to={`/dashboard/${this.props.date}/calendar`}>
-          <img src={calendarButton} alt="calendar" />
+          <img src={calendarButton} alt="calendar" /> Calendar
         </Link>
         <Link to={`/dashboard/${this.props.date}/settings`}>
-          <img src={settingsButton} alt="settings" />
+          <img src={settingsButton} alt="settings" /> Settings
         </Link>
       </nav>
     );

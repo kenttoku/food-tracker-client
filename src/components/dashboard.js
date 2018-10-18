@@ -15,11 +15,9 @@ export class Dashboard extends React.Component {
   componentDidMount() {
     // FIXME: Error when :date in url is invalid
     if (dateFns.parse(this.props.match.params.date) !== 'Invalid Date') {
-      console.log(this.props.date);
       this.props.dispatch(fetchAllDiaries());
       this.props.dispatch(fetchDiary(this.props.date))
-        .then(() => this.props.dispatch(setEntries()))
-        .then(console.log('set entries'));
+        .then(() => this.props.dispatch(setEntries()));
     }
   }
 
@@ -29,14 +27,22 @@ export class Dashboard extends React.Component {
   }
 
   render() {
+    let points = 'Loading...';
+    if (this.props.currentDiary) {
+      try {
+        points = this.props.currentDiary.points;
+      } catch (e) {
+        points = 'Loading...';
+      }
+    }
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id}>{entry.food.name} -
-        <Link to={`/dashboard/${this.props.date}/edit/${entry._id}/`}>Edit</Link>
+        <Link to={`/dashboard/${this.props.date}/edit/${entry._id}/`}><button className="btn-black">Edit</button></Link>
         <span
           className="deleteEntryButton"
           onClick={ () => this.deleteEntry(entry._id)}
         >
-          [delete]
+          <button className="btn-red">Delete</button>
         </span>
       </li>);
     });
@@ -45,6 +51,9 @@ export class Dashboard extends React.Component {
       <div className="dashboard">
         <div className="dashboard-username">
           Username: {this.props.username}
+        </div>
+        <div className="points-today">
+          Points for Today: {points}
         </div>
         <div className="entries">
           <ul>{entriesElements}</ul>
@@ -61,6 +70,7 @@ const mapStateToProps = (state, props) => {
   }
   return {
     date,
+    currentDiary: state.diary.currentDiary,
     entries: state.diary.entries,
     username: state.auth.currentUser.username
   };
