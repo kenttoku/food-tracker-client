@@ -13,3 +13,12 @@ export const normalizeResponseErrors = res => {
   }
   return res;
 };
+
+export const isValidDate = (yyyymmdd) => {
+  const dateString = yyyymmdd = yyyymmdd.slice(0, 4) + '-' + yyyymmdd.slice(4, 6) + '-' + yyyymmdd.slice(6);
+  const re = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateString.match(re)) return false;  // Invalid format
+  let d = new Date(dateString);
+  if (Number.isNaN(d.getTime())) return false; // Invalid date
+  return d.toISOString().slice(0, 10) === dateString;
+};

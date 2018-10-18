@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
+import { Redirect } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
-import { addNewFood } from '../actions/food-actions';
 // Actions
+import { addNewFood } from '../actions/food-actions';
 import { addFoodToDiary, deleteFoodFromDiary, setEntries } from '../actions/diary-actions';
+import { isValidDate } from '../actions/utils';
 
 
 const minValue = min => value =>
@@ -25,6 +27,9 @@ export class EditFoodForm extends React.Component {
   }
 
   render() {
+    if (!isValidDate(this.props.date)) {
+      return <Redirect to="/" />;
+    }
     return (
       <form
         className="edit-food"

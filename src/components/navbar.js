@@ -1,13 +1,14 @@
 import React from 'react';
 import dateFns from 'date-fns';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import homeButton from '../assets/baseline-home-24px.svg';
 import addButton from '../assets/baseline-add_circle-24px.svg';
 import calendarButton from '../assets/baseline-calendar_today-24px.svg';
 import settingsButton from '../assets/baseline-settings_applications-24px.svg';
 import requiresLogin from './requires-login';
+import { isValidDate } from '../actions/utils';
 
 import {
   fetchAllDiaries,
@@ -26,6 +27,9 @@ class Navbar extends React.Component {
 
 
   render() {
+    if (!isValidDate(this.props.date)) {
+      return <Redirect to="/" />;
+    }
     const today = dateFns.format(new Date(), 'YYYYMMDD');
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import dateFns from 'date-fns';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 // Actions
@@ -10,11 +10,12 @@ import {
   setEntries,
   deleteFoodFromDiary
 } from '../actions/diary-actions';
+import { isValidDate } from '../actions/utils';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
     // FIXME: Error when :date in url is invalid
-    if (dateFns.parse(this.props.match.params.date) !== 'Invalid Date') {
+    if (isValidDate(this.props.date)) {
       this.props.dispatch(fetchAllDiaries());
       this.props.dispatch(fetchDiary(this.props.date))
         .then(() => this.props.dispatch(setEntries()));
@@ -27,6 +28,10 @@ export class Dashboard extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+    if (!isValidDate(this.props.date)) {
+      return <Redirect to="/" />;
+    }
     let points = 'Loading...';
     if (this.props.currentDiary) {
       try {
