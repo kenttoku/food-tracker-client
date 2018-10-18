@@ -33,7 +33,6 @@ export const fetchDiaryError = error => ({
 export const fetchDiary = (yyyymmdd) => (dispatch, getState)  => {
   dispatch(fetchDiaryRequest());
   const authToken = getState().auth.authToken;
-  console.log(yyyymmdd);
   return fetch(`${API_BASE_URL}/diaries`, {
     method: 'POST',
     headers: {

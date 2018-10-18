@@ -15,14 +15,7 @@ import {
   FETCH_ALL_DIARIES_ERROR
 } from '../actions/diary-actions';
 
-const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth() + 1;
-const day = date.getDate();
-const yyyymmddd = year * 10000 + month * 100 + day;
-
 const initialState = {
-  date: yyyymmddd,
   diaries: [],
   currentDiary: null,
   entries: [],
@@ -46,7 +39,6 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === FETCH_DIARY_SUCCESS) {
-    console.log(action.diary);
     return Object.assign({}, state, {
       currentDiary: action.diary,
       loading: false,
@@ -63,7 +55,6 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === ADD_FOOD_TO_DIARY_SUCCESS) {
-    console.log(action.diary);
     return Object.assign({}, state, {
       currentDiary: action.diary,
       loading: false,
@@ -80,7 +71,6 @@ export default function reducer(state = initialState, action) {
       error: null
     });
   } else if (action.type === DELETE_FOOD_FROM_DIARY_SUCCESS) {
-    console.log(action.diary);
     return Object.assign({}, state, {
       currentDiary: action.diary,
       loading: false,
