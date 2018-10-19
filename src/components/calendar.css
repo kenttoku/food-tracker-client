@@ -66,19 +66,23 @@
 
 .calendar .body .cell .number {
   position: absolute;
-  font-size: 82.5%;
+  font-size: 62.5%;
   line-height: 1;
   top: .75em;
-  right: .75em;
+  left: .75em;
   font-weight: 700;
 }
 
 .calendar .body .cell .bg {
+  position: absolute;
+  width: 100%;
+  bottom: 15px;
+  text-align: center;
   font-weight: 700;
   line-height: 1;
-  font-size: 2em;
-  letter-spacing: -.07em;
+  font-size: 1.75em;
 }
+
 
 .calendar .body .col {
   flex-grow: 0;

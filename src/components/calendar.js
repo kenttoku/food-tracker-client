@@ -38,7 +38,7 @@ class Calendar extends React.Component {
       const startDate = moment().startOf('week');
       days.push(
         <div className="col col-center" key={i}>
-          {startDate.add(i, 'd').format('dddd')}
+          {startDate.add(i, 'd').format('ddd')}
         </div>
       );
     }
@@ -83,7 +83,7 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(cloneDay)}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">{points}</span>
+            <div className="bg">{points}</div>
           </div>
         );
         day.add(1, 'd');
