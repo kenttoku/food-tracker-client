@@ -12,6 +12,7 @@ import {
 import { isValidDate } from '../actions/utils';
 import deleteButton from '../assets/baseline-delete_forever-24px.svg';
 import './dashboard.css';
+import PointsHeader from './points-header';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -53,9 +54,7 @@ export class Dashboard extends React.Component {
 
     return (
       <div className="dashboard">
-        <div className="points-today">
-          Points for Today: {points}
-        </div>
+        <PointsHeader />
         <div className="entries">
           <ul className="entry-list">{entriesElements}</ul>
         </div>

@@ -1,3 +1,7 @@
+.dashboard {
+  background-color: var(--neutral-color);
+}
+
 .entry-list {
   margin: 0;
   padding: 0;

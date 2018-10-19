@@ -1,20 +1,27 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { fetchAllDiaries } from '../actions/diary-actions';
+import {
+  fetchAllDiaries,
+  fetchDiary,
+  setEntries
+} from '../actions/diary-actions';
 
 import chevronLeft from '../assets/baseline-chevron_left-24px.svg';
 import chevronRight from '../assets/baseline-chevron_right-24px.svg';
 import './calendar.css';
+import PointsHeader from './points-header';
 
 class Calendar extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchAllDiaries());
+    this.props.dispatch(fetchDiary(this.props.match.params.date))
+      .then(() => this.props.dispatch(setEntries()));
   }
 
   renderHeader() {
     const calHeader = moment(this.props.match.params.date, 'YYYYMMDD')
-      .format('MMMM YYYY');
+      .format('MMM YYYY');
     return (
       <div className="calendar-header row flex-middle">
         <div className="col col-start" onClick={() => this.prevMonth()}>
@@ -117,10 +124,13 @@ class Calendar extends React.Component {
 
   render() {
     return (
-      <div className="calendar">
-        {this.renderHeader()}
-        {this.renderDays()}
-        {this.renderCells()}
+      <div>
+        <PointsHeader />
+        <div className="calendar">
+          {this.renderHeader()}
+          {this.renderDays()}
+          {this.renderCells()}
+        </div>
       </div>
     );
   }

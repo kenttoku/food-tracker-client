@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 56px;
 }
 
 .container:before, .container:after {
