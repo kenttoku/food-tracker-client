@@ -46,15 +46,14 @@ export class App extends React.Component {
     clearInterval(this.refreshInterval);
   }
   // TODO: Wrap edit food form to fetch data.
-  // Fix redirect for invalid url
   render() {
     return (
       <div className="app container">
         <Route path="/dashboard/:date" component={Navbar} />
-        <HeaderBar />
-        <Route exact path="/register" component={RegistrationPage} />
-        <Route exact path="/login" component={LoginPage} />
+        {/* <HeaderBar /> */}
         <Switch>
+          <Route exact path="/register" component={RegistrationPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route path="/dashboard/:date/calendar" component={Calendar} />
           <Route path="/dashboard/:date/settings" component={SettingsScreen} />
           <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />

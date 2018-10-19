@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 // Components
 // Assets
 import './buttons.css';
+import './landing-page.css';
 
 export function LandingPage(props) {
   if (props.loggedIn) {
@@ -13,13 +14,20 @@ export function LandingPage(props) {
   }
 
   return (
-    <div className="home">
-      <Link to="/register">
-        <button className="btn-blue">Register</button>
-      </Link>
-      <Link to="/login" >
-        <button className="btn-black">Login</button>
-      </Link>
+    <div className="landing-page">
+      <img className="landing-page-logo" src="https://placekitten.com/200/200" alt="placeholder kitten" />
+      <div className="landing-header">
+        <h1 className="landing-headline">Food Tracker</h1>
+        <p className="landing-subtitle">A simple, intuitive food diary</p>
+      </div>
+      <div className="landing-page-buttons">
+        <Link to="/register">
+          <button className="btn-blue landing-btn">Register</button>
+        </Link>
+        <Link to="/login" >
+          <button className="btn-black landing-btn">Login</button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,44 @@
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.landing-page-logo {
+  width: 100%;
+  padding: 24px;
+}
+.landing-header {
+  text-align: center;
+}
+
+.landing-headline {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.landing-subtitle {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.landing-page-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 130px;
+  min-width: 320px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.landing-btn {
+  display: block;
+  width: 200px;
+  margin-bottom: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
