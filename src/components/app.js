@@ -48,20 +48,22 @@ export class App extends React.Component {
   // TODO: Wrap edit food form to fetch data.
   render() {
     return (
-      <div className="app container">
+      <div className="app">
         <Route path="/dashboard/:date" component={Navbar} />
         {/* <HeaderBar /> */}
-        <Switch>
-          <Route exact path="/register" component={RegistrationPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route path="/dashboard/:date/calendar" component={Calendar} />
-          <Route path="/dashboard/:date/settings" component={SettingsScreen} />
-          <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />
-          <Route path="/dashboard/:date/add" component={AddFoodScreen} />
-          <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
-          <Route path="/dashboard/:date" component={Dashboard} />
-          <Route path="/" component={LandingPage} />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/register" component={RegistrationPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route path="/dashboard/:date/calendar" component={Calendar} />
+            <Route path="/dashboard/:date/settings" component={SettingsScreen} />
+            <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />
+            <Route path="/dashboard/:date/add" component={AddFoodScreen} />
+            <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
+            <Route path="/dashboard/:date" component={Dashboard} />
+            <Route path="/" component={LandingPage} />
+          </Switch>
+        </div>
       </div>
     );
   }

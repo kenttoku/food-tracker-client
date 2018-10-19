@@ -3,8 +3,6 @@
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .container:before, .container:after {
@@ -18,6 +16,8 @@
 
 @media (min-width: 544px) {
   .container {
+    padding-left: 15px;
+    padding-right: 15px;
     max-width: 570px;
   }
 }

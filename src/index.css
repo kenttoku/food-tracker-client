@@ -27,6 +27,7 @@ body {
   color: var(--text-color);
   background: var(--bg-color);
   position: relative;
+  margin: 0;
 }
 
 main {
@@ -34,6 +35,10 @@ main {
   margin: 0 auto;
   margin-top: 5em;
   max-width: 50em;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* GRID */
