@@ -10,6 +10,8 @@ import {
   deleteFoodFromDiary
 } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
+import deleteButton from '../assets/baseline-delete_forever-24px.svg';
+import './dashboard.css';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -38,27 +40,24 @@ export class Dashboard extends React.Component {
       }
     }
     const entriesElements = this.props.entries.map(entry => {
-      return (<li key={entry._id}>{entry.food.name} -
-        <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}><button className="btn-black">Edit</button></Link>
-        <span
+      return (<li key={entry._id} className="entry-list-item">
+        <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}>{entry.food.name}</Link>
+        <a
           className="deleteEntryButton"
-          onClick={ () => this.deleteEntry(entry._id)}
+          onClick={() => this.deleteEntry(entry._id)}
         >
-          <button className="btn-red">Delete</button>
-        </span>
+          <img src={deleteButton} alt="delete" />
+        </a>
       </li>);
     });
 
     return (
       <div className="dashboard">
-        <div className="dashboard-username">
-          Username: {this.props.username}
-        </div>
         <div className="points-today">
           Points for Today: {points}
         </div>
         <div className="entries">
-          <ul>{entriesElements}</ul>
+          <ul className="entry-list">{entriesElements}</ul>
         </div>
       </div>
     );
@@ -69,7 +68,6 @@ const mapStateToProps = (state, props) => {
   return {
     currentDiary: state.diary.currentDiary,
     entries: state.diary.entries,
-    username: state.auth.currentUser.username
   };
 };
 

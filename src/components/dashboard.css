@@ -1,0 +1,12 @@
+.entry-list {
+  margin: 0;
+  padding: 0;
+}
+.entry-list-item {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px;
+  margin: 0px;
+}
