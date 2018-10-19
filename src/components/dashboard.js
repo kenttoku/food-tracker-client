@@ -1,5 +1,4 @@
 import React from 'react';
-import dateFns from 'date-fns';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
@@ -14,9 +13,9 @@ import { isValidDate } from '../actions/utils';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    if (isValidDate(this.props.date)) {
+    if (isValidDate(this.props.match.params.date)) {
       this.props.dispatch(fetchAllDiaries());
-      this.props.dispatch(fetchDiary(this.props.date))
+      this.props.dispatch(fetchDiary(this.props.match.params.date))
         .then(() => this.props.dispatch(setEntries()));
     }
   }
@@ -27,7 +26,7 @@ export class Dashboard extends React.Component {
   }
 
   render() {
-    if (!isValidDate(this.props.date)) {
+    if (!isValidDate(this.props.match.params.date)) {
       return <Redirect to="/" />;
     }
     let points = 'Loading...';
@@ -40,7 +39,7 @@ export class Dashboard extends React.Component {
     }
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id}>{entry.food.name} -
-        <Link to={`/dashboard/${this.props.date}/edit/${entry._id}/`}><button className="btn-black">Edit</button></Link>
+        <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}><button className="btn-black">Edit</button></Link>
         <span
           className="deleteEntryButton"
           onClick={ () => this.deleteEntry(entry._id)}
@@ -67,12 +66,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  let date = dateFns.format(new Date(), 'YYYYMMDD');
-  if (props.match.params.date) {
-    date = props.match.params.date;
-  }
   return {
-    date,
     currentDiary: state.diary.currentDiary,
     entries: state.diary.entries,
     username: state.auth.currentUser.username

@@ -1,5 +1,4 @@
 import React from 'react';
-import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
@@ -14,10 +13,10 @@ class AddFoodScreen extends React.Component {
 
   addFood(foodId) {
     const food = this.props.foodList.find(food => food.id === foodId);
-    const date = this.props.date;
+    const date = this.props.match.params.date;
     return this.props.dispatch(addFoodToDiary(food, date))
       .then(() => this.props.dispatch(setEntries()))
-      .then(this.props.history.push(`/dashboard/${this.props.date}`));
+      .then(this.props.history.push(`/dashboard/${this.props.match.params.date}`));
   }
 
   render() {
@@ -30,7 +29,7 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
-        <Link to={`/dashboard/${this.props.date}/newfood`}>New Food</Link>
+        <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>New Food</Link>
         <ul>
           {foodListElements}
         </ul>
@@ -39,15 +38,8 @@ class AddFoodScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  let date = dateFns.format(new Date(), 'YYYYMMDD');
-  if (props.match.params.date) {
-    date = props.match.params.date;
-  }
-  return {
-    date,
-    foodList: state.food.foodList,
-  };
-};
+const mapStateToProps = state => ({
+  foodList: state.food.foodList,
+});
 
 export default requiresLogin()(connect(mapStateToProps)(AddFoodScreen));

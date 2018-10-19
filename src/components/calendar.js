@@ -1,5 +1,5 @@
 import React from 'react';
-import dateFns from 'date-fns';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { fetchAllDiaries } from '../actions/diary-actions';
 
@@ -13,13 +13,15 @@ class Calendar extends React.Component {
   }
 
   renderHeader() {
+    const calHeader = moment(this.props.match.params.date, 'YYYYMMDD')
+      .format('MMMM YYYY');
     return (
       <div className="calendar-header row flex-middle">
         <div className="col col-start" onClick={() => this.prevMonth()}>
           <img className="calendar-icon-left" src={chevronLeft} alt="previous month" />
         </div>
         <div className="col col-center">
-          <span>{dateFns.format(this.props.currentMonth, 'MMMM YYYY')}</span>
+          <span>{calHeader}</span>
         </div>
         <div className="col col-end" onClick={() => this.nextMonth()}>
           <img className="calendar-icon-right" src={chevronRight} alt="next month" />
@@ -32,11 +34,11 @@ class Calendar extends React.Component {
   renderDays() {
     const days = [];
 
-    let startDate = dateFns.startOfWeek(this.props.currentMonth);
     for (let i = 0; i < 7; i++) {
+      const startDate = moment().startOf('week');
       days.push(
         <div className="col col-center" key={i}>
-          {dateFns.format(dateFns.addDays(startDate, i), 'dddd')}
+          {startDate.add(i, 'd').format('dddd')}
         </div>
       );
     }
@@ -47,7 +49,7 @@ class Calendar extends React.Component {
   getPoints(day) {
     let points = 0;
     const cellDiary = this.props.diaries.find(diary => {
-      return diary.yyyymmdd.toString() === dateFns.format(day, 'YYYYMMDD');
+      return diary.yyyymmdd.toString() === moment(day).format('YYYYMMDD');
     });
     if (cellDiary) {
       points = cellDiary.points;
@@ -56,29 +58,26 @@ class Calendar extends React.Component {
   }
 
   renderCells() {
-    const { currentMonth, selectedDate } = this.props;
-    const monthStart = dateFns.startOfMonth(currentMonth);
-    const monthEnd = dateFns.endOfMonth(monthStart);
-    const startDate = dateFns.startOfWeek(monthStart);
-    const endDate = dateFns.endOfWeek(monthEnd);
+    const selectedDate = moment(this.props.match.params.date, 'YYYYMMDD');
+    const day = moment(this.props.match.params.date, 'YYYYMMDD')
+      .startOf('month').startOf('week');
+    const endDate = moment(this.props.match.params.date, 'YYYYMMDD')
+      .endOf('month').endOf('week');
 
     const rows = [];
     let days = [];
-    let day = startDate;
     let formattedDate = '';
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
-        formattedDate = dateFns.format(day, 'D');
-        const cloneDay = day;
+        formattedDate = day.format('D');
+        const cloneDay = day.toDate();
 
         // Get Points for the day
         let points = this.getPoints(day);
         days.push(
           <div
             className={`col cell ${
-              !dateFns.isSameMonth(day, monthStart)
-                ? 'disabled'
-                : dateFns.isSameDay(day, selectedDate) ? 'selected' : ''
+              day.isSame(selectedDate, 'day') ? 'selected' : ''
             }`}
             key={day}
             onClick={() => this.onDateClick(cloneDay)}
@@ -87,7 +86,7 @@ class Calendar extends React.Component {
             <span className="bg">{points}</span>
           </div>
         );
-        day = dateFns.addDays(day, 1);
+        day.add(1, 'd');
       }
       rows.push(
         <div className="row" key={day}>
@@ -100,20 +99,20 @@ class Calendar extends React.Component {
   }
 
   onDateClick(day) {
-    const formattedDate = dateFns.format(day, 'YYYYMMDD');
+    const formattedDate = moment(day).format('YYYYMMDD');
     this.props.history.push(`/dashboard/${formattedDate}`);
   }
 
   nextMonth() {
-    const month = dateFns.addMonths(this.props.currentMonth, 1);
-    const formattedDate = dateFns.format(month, 'YYYYMMDD');
-    this.props.history.push(`/dashboard/${formattedDate}/calendar`);
+    const newDate = moment(this.props.match.params.date, 'YYYYMMDD')
+      .add(1, 'month').format('YYYYMMDD');
+    this.props.history.push(`/dashboard/${newDate}/calendar`);
   }
 
   prevMonth() {
-    const month = dateFns.subMonths(this.props.currentMonth, 1);
-    const formattedDate = dateFns.format(month, 'YYYYMMDD');
-    this.props.history.push(`/dashboard/${formattedDate}/calendar`);
+    const newDate = moment(this.props.match.params.date, 'YYYYMMDD')
+      .subtract(1, 'month').format('YYYYMMDD');
+    this.props.history.push(`/dashboard/${newDate}/calendar`);
   }
 
   render() {
@@ -127,17 +126,8 @@ class Calendar extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  let date = props.match.params.date;
-  if (date) {
-    date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
-    date = dateFns.parse(date);
-  }
-  return {
-    currentMonth: date,
-    selectedDate: date,
-    diaries: state.diary.diaries
-  };
-};
+const mapStateToProps = state => ({
+  diaries: state.diary.diaries
+});
 
 export default connect(mapStateToProps)(Calendar);

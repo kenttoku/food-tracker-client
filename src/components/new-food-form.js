@@ -1,5 +1,5 @@
 import React from 'react';
-import dateFns from 'date-fns';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
@@ -15,7 +15,7 @@ const minValue0 = minValue(0);
 export class NewFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
-    const urlDate = date.split('-').join('');
+    const urlDate = moment(date).format('YYYYMMDD');
     return this.props.dispatch(addNewFood(newFood))
       .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
       .then(() => this.props.dispatch(setEntries()))
@@ -69,10 +69,9 @@ export class NewFoodForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  let date = dateFns.format(new Date(), 'YYYY-MM-DD');
+  let date = moment().format('YYYY-MM-DD');
   if (props.match.params.date) {
-    date = props.match.params.date;
-    date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+    date = moment(props.match.params.date, 'YYYYMMDD').format('YYYY-MM-DD');
   }
   return {
     initialValues: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import dateFns from 'date-fns';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
@@ -13,17 +13,16 @@ import { isValidDate } from '../actions/utils';
 import './navbar.css';
 class Navbar extends React.Component {
   render() {
-    if (!isValidDate(this.props.date)) {
+    if (!isValidDate(this.props.match.params.date)) {
       return <Redirect to="/" />;
     }
-    const today = dateFns.format(new Date(), 'YYYYMMDD');
-
+    const today = moment().format('YYYYMMDD');
     return (
       <nav className="navbar">
         <Link to={`/dashboard/${today}`}>
           <img src={homeButton} alt="home" />Home
         </Link>
-        <Link to={`/dashboard/${this.props.date}/add`}>
+        <Link to={`/dashboard/${this.props.match.params.date}/add`}>
           <img src={addButton} alt="add" /> Add
         </Link>
         <Link to={`/dashboard/${today}/calendar`}>
@@ -38,12 +37,7 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  let date = dateFns.format(new Date(), 'YYYYMMDD');
-  if (props.match.params.date) {
-    date = props.match.params.date;
-  }
   return {
-    date,
     entries: state.diary.entries,
     username: state.auth.currentUser.username
   };
