@@ -68,7 +68,7 @@ export class EditFoodForm extends React.Component {
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
-          Edit Food
+          Submit
         </button>
       </form>
     );

@@ -17,6 +17,7 @@ import SettingsScreen from './settings-screen';
 import { refreshAuthToken } from '../actions/auth-actions';
 // Styling
 import './app.css';
+import './form.css';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {

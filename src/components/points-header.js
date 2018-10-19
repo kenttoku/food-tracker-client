@@ -9,7 +9,7 @@ class PointsHeader extends React.Component {
         <h2 className="points-header-heading">Today&apos;s Points</h2>
         <div className="points-progress">
           <div className="day-points">
-            <div className="points-count">10</div>
+            <div className="points-count">4</div>
             <p className="points-type">Current</p>
           </div>
           <div className="goal-points">

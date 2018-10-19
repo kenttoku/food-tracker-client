@@ -125,7 +125,7 @@ class Calendar extends React.Component {
   render() {
     return (
       <div>
-        <PointsHeader />
+        <h2 className="screen-header">Calendar</h2>
         <div className="calendar">
           {this.renderHeader()}
           {this.renderDays()}
