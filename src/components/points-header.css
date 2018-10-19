@@ -1,6 +1,7 @@
 .points-header {
-  background-color: var(--bg-color);
+  background-color: var(--neutral-color);
   text-align: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .points-header-heading {
@@ -25,11 +26,3 @@
   margin: 0;
   margin-bottom: 4px;
 }
-/* <div className="points-progress">
-<div className="day-points">
-  <div className="points-count">10</div>
-  <p className="points-type">Current</p>
-</div>
-<div className="goal-points">
-  <div className="points-count">18</div>
-  <p className="points-type">Goal</p> */

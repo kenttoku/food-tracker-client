@@ -7,7 +7,10 @@ import requiresLogin from './requires-login';
 class SettingsScreen extends React.Component {
   render() {
     return (
-      <SettingsForm />
+      <div>
+        <h2 className="screen-header">Settings</h2>
+        <SettingsForm />
+      </div>
     );
   }
 }

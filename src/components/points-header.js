@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './points-header.css';
 class PointsHeader extends React.Component {
   render() {
+    // TODO: Change points count to display the currect points count
     return (
       <div className="points-header">
         <h2 className="points-header-heading">Today&apos;s Points</h2>
