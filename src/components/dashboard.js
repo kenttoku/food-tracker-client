@@ -35,7 +35,20 @@ export class Dashboard extends React.Component {
     let points = 'Loading...';
     if (this.props.currentDiary) {
       try {
-        points = this.props.currentDiary.points;
+        points = (
+          <div className="points-header">
+            <h2 className="points-header-heading">Today&apos;s Points</h2>
+            <div className="points-progress">
+              <div className="day-points">
+                <div className="points-count">{this.props.currentDiary.points}</div>
+                <p className="points-type">Current</p>
+              </div>
+              <div className="goal-points">
+                <div className="points-count">{this.props.currentUser.goal}</div>
+                <p className="points-type">Goal</p>
+              </div>
+            </div>
+          </div>);
       } catch (e) {
         points = 'Loading...';
       }
@@ -54,7 +67,7 @@ export class Dashboard extends React.Component {
 
     return (
       <div className="dashboard">
-        <PointsHeader />
+        {points}
         <div className="entries">
           <ul className="entry-list">{entriesElements}</ul>
         </div>
@@ -63,10 +76,11 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
     currentDiary: state.diary.currentDiary,
     entries: state.diary.entries,
+    currentUser: state.auth.currentUser
   };
 };
 
