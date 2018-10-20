@@ -35,36 +35,25 @@ export class EditFoodForm extends React.Component {
         className="edit-food"
         onSubmit={this.props.handleSubmit(values =>this.onSubmit(values))}
       >
-        <label htmlFor="date">Date</label>
-        <Field component={Input} type="date" name="date"/>
-        <label htmlFor="name">Name</label>
+        <Field component={Input} type="date" name="date" label="Date" />
         <Field
           component={Input}
           type="text"
           name="name"
           validate={[required, nonEmpty]}
           value="0"
+          label="Name"
         />
-        <label htmlFor="fruits">Fruits</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fruits" />
-        <label htmlFor="vegetables">Vegetables</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="vegetables" />
-        <label htmlFor="wholeGrains">Whole Grains</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="wholeGrains" />
-        <label htmlFor="leanProteins">Lean Proteins</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="leanProteins" />
-        <label htmlFor="nutsAndSeeds">Nuts and Seeds</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="nutsAndSeeds" />
-        <label htmlFor="dairy">Dairy</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="dairy" />
-        <label htmlFor="refinedGrains">Refined Grains</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="refinedGrains" />
-        <label htmlFor="fattyProteins">Fatty Proteins</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fattyProteins" />
-        <label htmlFor="sweets">Sweets</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="sweets" />
-        <label htmlFor="friedFoods">Fried Foods</label>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="friedFoods" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fruits" label="Fruits"  />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="vegetables" label="Vegetables"/>
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="wholeGrains" label="Whole Grains" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="leanProteins" label="Lean Proteins" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="nutsAndSeeds" label="Nuts and Seeds" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="dairy" label="Dairy" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="refinedGrains" label="Refined Grains" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fattyProteins" label="Fatty Proteins" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="sweets" label="Sweets" />
+        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="friedFoods" label="Fried Foods" />
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
