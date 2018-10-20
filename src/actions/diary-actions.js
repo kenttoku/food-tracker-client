@@ -32,14 +32,13 @@ export const fetchDiaryError = error => ({
 
 export const fetchDiary = (yyyymmdd) => (dispatch, getState)  => {
   dispatch(fetchDiaryRequest());
+  console.log(yyyymmdd);
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/diaries`, {
-    method: 'POST',
+  return fetch(`${API_BASE_URL}/diaries/${yyyymmdd}`, {
+    method: 'GET',
     headers: {
-      Authorization: `Bearer ${authToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ yyyymmdd })
+      Authorization: `Bearer ${authToken}`
+    }
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
