@@ -17,9 +17,9 @@ import {
 
 const initialState = {
   diaries: [],
-  currentDiary: null,
+  currentDiary: {},
   entries: [],
-  loading: true,
+  loading: false,
   error: null
 };
 

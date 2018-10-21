@@ -15,7 +15,6 @@ export function LandingPage(props) {
 
   return (
     <div className="landing-page">
-      <img className="landing-page-logo" src="https://placekitten.com/200/200" alt="placeholder kitten" />
       <div className="landing-header">
         <h1 className="landing-headline">Food Tracker</h1>
         <p className="landing-subtitle">A simple, intuitive food diary</p>
