@@ -16,3 +16,19 @@ select:focus,
 textarea {
   font-size: 16px;
 }
+
+.form-input {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding: 6px;
+  margin: 0px;
+}
+
+input {
+  width: 200px;
+}
+
+input[type="number"] {
+  width: 50px;
+}

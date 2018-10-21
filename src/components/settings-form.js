@@ -53,31 +53,31 @@ export class SettingsForm extends React.Component {
         onSubmit={this.props.handleSubmit(values =>
           this.onSubmit(values)
         )}>
-        <label htmlFor="username">Username</label>
         <Field
           component={Input}
           type="text"
           name="username"
+          label="Username"
           validate={[required, nonEmpty, isTrimmed]}
         />
-        <label htmlFor="email">Email</label>
         <Field
           component={Input}
           type="text"
           name="email"
+          label="Email"
         />
-        <label htmlFor="goal">Goal</label>
         <Field
           component={Input}
           type="number"
           name="goal"
+          label="Goal"
         />
-        <label htmlFor="password">Password</label>
         <Field
           component={Input}
           type="password"
           name="password"
           id="password"
+          label="Password"
           validate={[required, nonEmpty]}
         />
         <button
