@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   foodList: [],
-  loading: true,
+  loading: false,
   error: null
 };
 

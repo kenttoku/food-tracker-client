@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Spinner from 'react-spinkit';
 
 export default () => Component => {
   function RequiresLogin(props) {
     const { authenticating, loggedIn, error, ...passThroughProps } = props;
     if (authenticating) {
-      return <div>Logging in...</div>;
+      return <Spinner name="pacman" />;
     } else if (!loggedIn || error) {
       return <Redirect to="/" />;
     }
@@ -17,7 +18,7 @@ export default () => Component => {
   const displayName = Component.displayName || Component.name || 'Component';
   RequiresLogin.displayName = `RequiresLogin(${displayName})`;
 
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     authenticating: state.auth.loading,
     loggedIn: state.auth.currentUser !== null,
     error: state.auth.error
