@@ -39,8 +39,8 @@ export class Dashboard extends React.Component {
 
     let points = 'Loading...';
     points = (
-      <div className="points-header">
-        <h2 className="points-header-heading">Today&apos;s Points</h2>
+      <header className="points-header">
+        <h2 className="screen-header">Today&apos;s Points</h2>
         <div className="points-progress">
           <div className="day-points">
             <div className="points-count">{this.props.currentDiary.points}</div>
@@ -51,7 +51,7 @@ export class Dashboard extends React.Component {
             <p className="points-type">Goal</p>
           </div>
         </div>
-      </div>);
+      </header>);
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id} className="entry-list-item">
         <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}>{entry.food.name}</Link>

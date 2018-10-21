@@ -8,7 +8,9 @@ class SettingsScreen extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="screen-header">Settings</h2>
+        <header>
+          <h2 className="screen-header">Settings</h2>
+        </header>
         <SettingsForm />
       </div>
     );

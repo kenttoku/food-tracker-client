@@ -33,7 +33,9 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
-        <h2 className="screen-header">Add Food</h2>
+        <header>
+          <h2 className="screen-header">Add Food</h2>
+        </header>
         <ul className="food-list">
           {foodListElements}
         </ul>
