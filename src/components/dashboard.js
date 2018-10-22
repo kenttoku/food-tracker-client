@@ -28,7 +28,7 @@ export class Dashboard extends React.Component {
     }
 
     if (this.props.loading) {
-      return <Spinner name="pacman" />;
+      return <Spinner className="spinner"  name="pacman" />;
     }
 
     const date = moment(this.props.match.params.date, 'YYYYMMDD').calendar(null, {
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
   currentDiary: state.diary.currentDiary,
   entries: state.diary.entries,
   currentUser: state.auth.currentUser,
-  loading: state.diary.loading
+  loading: state.food.loading || state.diary.loading || state.auth.loading
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));

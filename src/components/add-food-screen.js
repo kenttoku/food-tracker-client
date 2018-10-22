@@ -22,7 +22,7 @@ class AddFoodScreen extends React.Component {
   }
   render() {
     if (this.props.loading) {
-      return <Spinner name="pacman" />;
+      return <Spinner className="spinner"  name="pacman" />;
     }
     const foodListElements = this.props.foodList.map(food => {
       return (
@@ -51,7 +51,7 @@ class AddFoodScreen extends React.Component {
 
 const mapStateToProps = state => ({
   foodList: state.food.foodList,
-  loading: state.food.loading
+  loading: state.food.loading || state.diary.loading || state.auth.loading
 });
 
 export default requiresLogin()(connect(mapStateToProps)(AddFoodScreen));

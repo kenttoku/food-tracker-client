@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import HeaderBar from './header-bar';
 import { fetchDiary } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
-
+import './edit-food-screen.css';
+import Spinner from 'react-spinkit';
 
 class EditFoodScreen extends React.Component {
   componentDidMount() {
@@ -15,10 +16,10 @@ class EditFoodScreen extends React.Component {
 
   render() {
     if (this.props.loading) {
-      return <div>Loading...</div>;
+      return <Spinner className="spinner" name="pacman" />;
     }
     return (
-      <div>
+      <div className="edit-form">
         <HeaderBar title="Edit Entry"/>
         <main>
           <EditFoodForm />
@@ -29,7 +30,7 @@ class EditFoodScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.diary.loading
+  loading: state.food.loading || state.diary.loading || state.auth.loading
 });
 
 export default connect(mapStateToProps)(EditFoodScreen);

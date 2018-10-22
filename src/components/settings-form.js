@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, SubmissionError } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-// Components
+import moment from 'moment';
 import Input from './input';
-// Actions
 import { setAuthToken, authSuccess } from '../actions/auth-actions';
 import { updateUser } from '../actions/users-actions';
-// Other
 import { required, nonEmpty, isTrimmed } from '../validators';
 import { saveAuthToken } from '../local-storage';
 
@@ -22,6 +21,7 @@ export class SettingsForm extends React.Component {
       goal,
       username: this.props.username
     };
+    const urlDate = moment().format('YYYYMMDD');
     return this.props
       .dispatch(updateUser(updatedUser))
       .then(authToken => {
@@ -34,6 +34,7 @@ export class SettingsForm extends React.Component {
           throw new Error('Invalid Entry');
         }
       })
+      .then(this.props.history.push(`/dashboard/${urlDate}`))
       .catch(err => {
         const { message } = err;
         return Promise.reject(
@@ -106,4 +107,4 @@ const form = reduxForm({
     dispatch(focus('settings', Object.keys(errors)[0]))
 });
 
-export default connect(mapStateToProps)((form)(SettingsForm));
+export default withRouter(connect(mapStateToProps)((form)(SettingsForm)));
