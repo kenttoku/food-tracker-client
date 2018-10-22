@@ -82,15 +82,13 @@ class Calendar extends React.Component {
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = day.format('D');
-        const cloneDay = day.toDate();
-
         const date = day.format('YYYYMMDD');
 
         // Get Points for the day
         let points = this.getPoints(day);
         const cellClass = day.isSame(selectedDate, 'month') ? (day.isSame(selectedDate, 'day') ? 'selected' : '') : 'disabled';
         days.push(
-          <Link to={`/dashboard/${formattedDate}`}
+          <Link to={`/dashboard/${date}`}
             className={`col cell ${cellClass}`}
             key={day}>
             <span className="number">{formattedDate}</span>
@@ -107,11 +105,6 @@ class Calendar extends React.Component {
       days = [];
     }
     return <div className="body">{rows}</div>;
-  }
-
-  onDateClick(day) {
-    const formattedDate = moment(day).format('YYYYMMDD');
-    this.props.history.push(`/dashboard/${formattedDate}`);
   }
 
   render() {
