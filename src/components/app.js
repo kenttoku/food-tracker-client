@@ -26,6 +26,10 @@ export class App extends React.Component {
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
       this.stopPeriodicRefresh();
     }
+
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
   }
 
   componentWillUnmount() {
