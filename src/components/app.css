@@ -21,17 +21,17 @@
     padding-right: 15px;
     max-width: 570px;
   }
-
-  .submit-food-button, .new-food-button {
-    position: static;
-    margin-top: 16px;
-    max-width: 300px;
-  }
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: 740px;
+  }
+
+  .submit-food-button, .new-food-button {
+    position: static;
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
 }
 
