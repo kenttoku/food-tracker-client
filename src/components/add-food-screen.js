@@ -7,6 +7,7 @@ import { fetchAllFood } from '../actions/food-actions';
 import './add-food-screen.css';
 import addButton from '../assets/baseline-add-24px.svg';
 import HeaderBar from './header-bar';
+import Spinner from 'react-spinkit';
 
 class AddFoodScreen extends React.Component {
   componentDidMount() {
@@ -21,12 +22,15 @@ class AddFoodScreen extends React.Component {
   }
   // TODO: Find a better button or idea for adding food
   render() {
+    if (this.props.loading) {
+      return <Spinner name="pacman" />;
+    }
     const foodListElements = this.props.foodList.map(food => {
       return (
         <li key={food.id} className="food-list-item">
           {food.name}
           <button onClick={() => this.addFood(food.id)}>
-            <img src={addButton} alt="add food" />
+            <img src={addButton} width="16px" alt="add food" />
           </button>
         </li>);
     });
@@ -37,7 +41,9 @@ class AddFoodScreen extends React.Component {
           <ul className="food-list">
             {foodListElements}
           </ul>
-          <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>New Food</Link>
+          <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>
+            <button className="btn-black new-food-button">Create New Food</button>
+          </Link>
         </main>
       </div>
     );
@@ -46,6 +52,7 @@ class AddFoodScreen extends React.Component {
 
 const mapStateToProps = state => ({
   foodList: state.food.foodList,
+  loading: state.food.loading
 });
 
 export default requiresLogin()(connect(mapStateToProps)(AddFoodScreen));

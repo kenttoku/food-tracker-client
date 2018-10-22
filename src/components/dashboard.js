@@ -62,7 +62,7 @@ export class Dashboard extends React.Component {
           className="deleteEntryButton"
           onClick={() => this.deleteEntry(entry._id)}
         >
-          <img src={deleteButton} alt="delete" />
+          <img src={deleteButton} width="16px" alt="delete" />
         </button>
       </li>);
     });
