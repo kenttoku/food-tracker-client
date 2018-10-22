@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-// Components
 import LoginForm from './login-form';
+import HeaderBar from './header-bar';
 
 export function LoginPage(props) {
   if (props.loggedIn) {
@@ -12,10 +12,12 @@ export function LoginPage(props) {
   }
 
   return (
-    <div className="home">
-      <h2>Log in</h2>
-      <LoginForm />
-      <Link to="/"><button className="btn-black">Back</button></Link>
+    <div className="login">
+      <HeaderBar title="Login"/>
+      <main>
+        <LoginForm />
+        <Link to="/"><button className="btn-black">Back</button></Link>
+      </main>
     </div>
   );
 }

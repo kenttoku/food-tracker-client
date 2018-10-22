@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
-// Actions
 import { addFoodToDiary } from '../actions/diary-actions';
 import { fetchAllFood } from '../actions/food-actions';
 import './add-food-screen.css';
 import addButton from '../assets/baseline-add-24px.svg';
+import HeaderBar from './header-bar';
 
 class AddFoodScreen extends React.Component {
   componentDidMount() {
@@ -32,13 +32,13 @@ class AddFoodScreen extends React.Component {
     });
     return (
       <div className="add-food">
-        <header>
-          <h2 className="screen-header">Add Food</h2>
-        </header>
-        <ul className="food-list">
-          {foodListElements}
-        </ul>
-        <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>New Food</Link>
+        <HeaderBar title="Add Food"/>
+        <main>
+          <ul className="food-list">
+            {foodListElements}
+          </ul>
+          <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>New Food</Link>
+        </main>
       </div>
     );
   }

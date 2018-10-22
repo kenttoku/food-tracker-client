@@ -9,6 +9,7 @@ import {
 import chevronLeft from '../assets/baseline-chevron_left-24px.svg';
 import chevronRight from '../assets/baseline-chevron_right-24px.svg';
 import './calendar.css';
+import HeaderBar from './header-bar';
 
 class Calendar extends React.Component {
   componentDidMount() {
@@ -122,9 +123,7 @@ class Calendar extends React.Component {
   render() {
     return (
       <div>
-        <header>
-          <h2 className="screen-header">Calendar</h2>
-        </header>
+        <HeaderBar title="Calendar"/>
         <div className="calendar">
           {this.renderHeader()}
           {this.renderDays()}

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
 // Actions
 import { addNewFood } from '../actions/food-actions';
@@ -28,6 +28,36 @@ class EditFoodForm extends React.Component {
     if (!isValidDate(this.props.date)) {
       return <Redirect to="/" />;
     }
+
+    const categories = [
+      'Fruits',
+      'Vegetables',
+      'Whole Grains',
+      'Lean Proteins',
+      'Nuts And Seeds',
+      'Dairy',
+      'Refined Grains',
+      'Fatty Proteins',
+      'Sweets',
+      'Fried Foods'
+    ];
+
+    const categoryFields = categories.map(category => {
+      const camelCategory = category.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+        return !index ? letter.toLowerCase() : letter.toUpperCase();
+      }).replace(/\s+/g, '');
+
+      return (<Field
+        key={camelCategory}
+        component={Input}
+        type="number"
+        pattern="[0-9]*"
+        validate={minValue0}
+        name={camelCategory}
+        label={category}
+      />);
+    });
+
     return (
       <form
         className="edit-food"
@@ -42,16 +72,7 @@ class EditFoodForm extends React.Component {
           value="0"
           label="Name"
         />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fruits" label="Fruits"  />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="vegetables" label="Vegetables"/>
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="wholeGrains" label="Whole Grains" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="leanProteins" label="Lean Proteins" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="nutsAndSeeds" label="Nuts and Seeds" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="dairy" label="Dairy" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="refinedGrains" label="Refined Grains" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fattyProteins" label="Fatty Proteins" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="sweets" label="Sweets" />
-        <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="friedFoods" label="Fried Foods" />
+        {categoryFields}
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
@@ -63,7 +84,6 @@ class EditFoodForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.diary.entries);
   let date = props.match.params.date;
   if (date) {
     date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
@@ -102,4 +122,4 @@ const form = reduxForm({
     dispatch(focus('edit-food', Object.keys(errors)[0]))
 })(EditFoodForm);
 
-export default connect(mapStateToProps)(form);
+export default withRouter(connect(mapStateToProps)(form));

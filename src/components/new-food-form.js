@@ -22,6 +22,35 @@ export class NewFoodForm extends React.Component {
   }
 
   render() {
+    const categories = [
+      'Fruits',
+      'Vegetables',
+      'Whole Grains',
+      'Lean Proteins',
+      'Nuts And Seeds',
+      'Dairy',
+      'Refined Grains',
+      'Fatty Proteins',
+      'Sweets',
+      'Fried Foods'
+    ];
+
+    const categoryFields = categories.map(category => {
+      const camelCategory = category.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+        return !index ? letter.toLowerCase() : letter.toUpperCase();
+      }).replace(/\s+/g, '');
+
+      return (<Field
+        key={camelCategory}
+        component={Input}
+        type="number"
+        pattern="[0-9]*"
+        validate={minValue0}
+        name={camelCategory}
+        label={category}
+      />);
+    });
+
     return (
       <div className="form-container">
         <form
@@ -37,16 +66,7 @@ export class NewFoodForm extends React.Component {
             value="0"
             label="Name"
           />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fruits" label="Fruits"  />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="vegetables" label="Vegetables"/>
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="wholeGrains" label="Whole Grains" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="leanProteins" label="Lean Proteins" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="nutsAndSeeds" label="Nuts and Seeds" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="dairy" label="Dairy" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="refinedGrains" label="Refined Grains" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="fattyProteins" label="Fatty Proteins" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="sweets" label="Sweets" />
-          <Field component={Input} type="number" pattern="[0-9]*" validate={minValue0} name="friedFoods" label="Fried Foods" />
+          {categoryFields}
           <button
             type="submit"
             disabled={this.props.pristine || this.props.submitting}>

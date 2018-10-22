@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import HeaderBar from './header-bar';
 import SettingsForm from './settings-form';
 import requiresLogin from './requires-login';
 import { clearAuth } from '../actions/auth-actions';
@@ -15,11 +16,11 @@ class SettingsScreen extends React.Component {
   render() {
     return (
       <div>
-        <header>
-          <h2 className="screen-header">Settings</h2>
-        </header>
-        <SettingsForm />
-        <button onClick={() => this.logOut()}>Log out</button>
+        <HeaderBar title="Settings"/>
+        <main>
+          <SettingsForm />
+          <button onClick={() => this.logOut()}>Log out</button>
+        </main>
       </div>
     );
   }

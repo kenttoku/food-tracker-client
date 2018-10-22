@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import HeaderBar from './header-bar';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 // Components
@@ -11,10 +12,12 @@ export function RegistrationPage(props) {
     return <Redirect to={`/dashboard/${today}`} />;
   }
   return (
-    <div className="home">
-      <h2>Register</h2>
-      <RegistrationForm />
-      <Link to="/"><button className="btn-black">Back</button></Link>
+    <div className="registration-page">
+      <HeaderBar title="Register"/>
+      <main>
+        <RegistrationForm />
+        <Link to="/"><button className="btn-black">Back</button></Link>
+      </main>
     </div>
   );
 }

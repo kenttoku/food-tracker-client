@@ -1,10 +1,8 @@
 import React from 'react';
 import EditFoodForm from './edit-food-form';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  fetchDiary
-} from '../actions/diary-actions';
+import HeaderBar from './header-bar';
+import { fetchDiary } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
 
 
@@ -16,12 +14,16 @@ class EditFoodScreen extends React.Component {
   }
 
   render() {
-    console.log(this.props.loading);
     if (this.props.loading) {
       return <div>Loading...</div>;
     }
     return (
-      <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />
+      <div>
+        <HeaderBar title="Edit Entry"/>
+        <main>
+          <EditFoodForm />
+        </main>
+      </div>
     );
   }
 }

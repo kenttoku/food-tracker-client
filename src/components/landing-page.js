@@ -2,12 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-// Components
 // Assets
 import './buttons.css';
 import './landing-page.css';
 
-export function LandingPage(props) {
+function LandingPage(props) {
   if (props.loggedIn) {
     const today = moment().format('YYYYMMDD');
     return <Redirect to={`/dashboard/${today}`} />;

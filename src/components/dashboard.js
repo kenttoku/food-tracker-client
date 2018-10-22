@@ -2,12 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-// Actions
-import {
-  fetchAllDiaries,
-  fetchDiary,
-  deleteFoodFromDiary
-} from '../actions/diary-actions';
+import { fetchAllDiaries, fetchDiary, deleteFoodFromDiary } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
 import deleteButton from '../assets/baseline-delete_forever-24px.svg';
 import './dashboard.css';
@@ -35,7 +30,7 @@ export class Dashboard extends React.Component {
       return <Spinner name="pacman" />;
     }
 
-    let points = 'Loading...';
+    let points;
     // TODO: Fix Point Goal Display when goal isn't set
     points = (
       <header className="points-header">
@@ -51,6 +46,7 @@ export class Dashboard extends React.Component {
           </div>
         </div>
       </header>);
+
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id} className="entry-list-item">
         <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}>{entry.food.name}</Link>
@@ -66,21 +62,19 @@ export class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         {points}
-        <div className="entries">
+        <main className="entries">
           <ul className="entry-list">{entriesElements}</ul>
-        </div>
+        </main>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentDiary: state.diary.currentDiary,
-    entries: state.diary.entries,
-    currentUser: state.auth.currentUser,
-    loading: state.diary.loading
-  };
-};
+const mapStateToProps = state => ({
+  currentDiary: state.diary.currentDiary,
+  entries: state.diary.entries,
+  currentUser: state.auth.currentUser,
+  loading: state.diary.loading
+});
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
