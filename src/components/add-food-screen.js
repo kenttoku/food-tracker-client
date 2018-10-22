@@ -20,7 +20,6 @@ class AddFoodScreen extends React.Component {
     return this.props.dispatch(addFoodToDiary(food, date))
       .then(this.props.history.push(`/dashboard/${this.props.match.params.date}`));
   }
-  // TODO: Find a better button or idea for adding food
   render() {
     if (this.props.loading) {
       return <Spinner name="pacman" />;
@@ -38,12 +37,12 @@ class AddFoodScreen extends React.Component {
       <div className="add-food">
         <HeaderBar title="Add Food"/>
         <main>
-          <ul className="food-list">
-            {foodListElements}
-          </ul>
           <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>
             <button className="btn-black new-food-button">Create New Food</button>
           </Link>
+          <ul className="food-list">
+            {foodListElements}
+          </ul>
         </main>
       </div>
     );

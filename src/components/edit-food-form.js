@@ -72,8 +72,10 @@ class EditFoodForm extends React.Component {
           value="0"
           label="Name"
         />
+        <h3 className="serving-count">Servings</h3>
         {categoryFields}
         <button
+          className="btn-black submit-food-button"
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
           Submit

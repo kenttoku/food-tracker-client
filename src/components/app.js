@@ -9,7 +9,7 @@ import EditFoodScreen from './edit-food-screen';
 import LandingPage from './landing-page';
 import LoginPage from './login-page';
 import Navbar from './navbar';
-import NewFoodForm from './new-food-form';
+import NewFoodScreen from './new-food-screen';
 import RegistrationPage from './registration-page';
 import SettingsScreen from './settings-screen';
 // Actions
@@ -61,7 +61,7 @@ export class App extends React.Component {
             <Route path="/dashboard/:date/settings" component={SettingsScreen} />
             <Route path="/dashboard/:date/edit/:entryId" component={EditFoodScreen} />
             <Route path="/dashboard/:date/add" component={AddFoodScreen} />
-            <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
+            <Route path="/dashboard/:date/newfood" component={NewFoodScreen} />
             <Route path="/dashboard/:date" component={Dashboard} />
             <Route path="/" component={LandingPage} />
           </Switch>

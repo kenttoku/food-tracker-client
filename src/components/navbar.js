@@ -48,11 +48,9 @@ class Navbar extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    entries: state.diary.entries,
-    username: state.auth.currentUser.username
-  };
-};
+const mapStateToProps = state => ({
+  entries: state.diary.entries,
+  username: state.auth.currentUser.username
+});
 
 export default requiresLogin()(connect(mapStateToProps)(Navbar));

@@ -32,16 +32,16 @@
 }
 
 .settings-button {
-  margin: 0 auto;
+  margin: 8px auto;
   width: 100%;
 }
 
 .logout-button {
-  margin: 0 auto;
+  margin: 8px auto;
   width: 100%;
 }
 
-.new-food-button {
+.new-food-button, .submit-food-button {
   position: fixed;
   bottom: 56px;
   margin: 0 auto;

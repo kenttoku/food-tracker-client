@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
+import { withRouter } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
 import { addFoodToDiary } from '../actions/diary-actions';
@@ -66,8 +67,10 @@ export class NewFoodForm extends React.Component {
             value="0"
             label="Name"
           />
+          <h3 className="serving-count">Servings</h3>
           {categoryFields}
           <button
+            className="btn-black submit-food-button"
             type="submit"
             disabled={this.props.pristine || this.props.submitting}>
           Add New Food
@@ -96,4 +99,4 @@ const form = reduxForm({
     dispatch(focus('new-food', Object.keys(errors)[0]))
 });
 
-export default connect(mapStateToProps)((form)(NewFoodForm));
+export default withRouter(connect(mapStateToProps)((form)(NewFoodForm)));
