@@ -4,6 +4,7 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 56px;
+  height:100%;
 }
 
 .container:before, .container:after {
@@ -32,6 +33,14 @@
     position: static;
     margin-top: 16px;
     margin-bottom: 16px;
+  }
+
+  .navbar-link img {
+    display: inline-block;
+  }
+  
+  .navbar-link span {
+    font-size: 24px;
   }
 }
 
