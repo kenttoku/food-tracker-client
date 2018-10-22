@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
   fetchAllDiaries,
   fetchDiary,
-  setEntries
 } from '../actions/diary-actions';
 
 import chevronLeft from '../assets/baseline-chevron_left-24px.svg';
@@ -15,8 +14,7 @@ import PointsHeader from './points-header';
 class Calendar extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchAllDiaries());
-    this.props.dispatch(fetchDiary(this.props.match.params.date))
-      .then(() => this.props.dispatch(setEntries()));
+    this.props.dispatch(fetchDiary(this.props.match.params.date));
   }
 
   renderHeader() {

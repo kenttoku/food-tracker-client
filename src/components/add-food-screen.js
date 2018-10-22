@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 // Actions
-import { addFoodToDiary, setEntries } from '../actions/diary-actions';
+import { addFoodToDiary } from '../actions/diary-actions';
 import { fetchAllFood } from '../actions/food-actions';
 import './add-food-screen.css';
 import addButton from '../assets/baseline-add-24px.svg';
@@ -17,7 +17,6 @@ class AddFoodScreen extends React.Component {
     const food = this.props.foodList.find(food => food.id === foodId);
     const date = this.props.match.params.date;
     return this.props.dispatch(addFoodToDiary(food, date))
-      .then(() => this.props.dispatch(setEntries()))
       .then(this.props.history.push(`/dashboard/${this.props.match.params.date}`));
   }
   // TODO: Find a better button or idea for adding food

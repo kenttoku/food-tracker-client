@@ -3,9 +3,7 @@ import EditFoodForm from './edit-food-form';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  fetchAllDiaries,
-  fetchDiary,
-  setEntries
+  fetchDiary
 } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
 
@@ -13,8 +11,7 @@ import { isValidDate } from '../actions/utils';
 class EditFoodScreen extends React.Component {
   componentDidMount() {
     if (isValidDate(this.props.match.params.date)) {
-      this.props.dispatch(fetchDiary(this.props.match.params.date))
-        .then(() => this.props.dispatch(setEntries()));
+      this.props.dispatch(fetchDiary(this.props.match.params.date));
     }
   }
 

@@ -7,11 +7,6 @@ export const setDate = yyyymmdd => ({
   yyyymmdd
 });
 
-export const SET_ENTRIES = 'SET_ENTRIES';
-export const setEntries = () => ({
-  type: SET_ENTRIES
-});
-
 // Async Actions
 export const FETCH_DIARY_REQUEST = 'FETCH_DIARY_REQUEST';
 export const fetchDiaryRequest = () => ({

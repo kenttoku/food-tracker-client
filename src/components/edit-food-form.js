@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
 // Actions
 import { addNewFood } from '../actions/food-actions';
-import { addFoodToDiary, deleteFoodFromDiary, setEntries } from '../actions/diary-actions';
+import { addFoodToDiary, deleteFoodFromDiary } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
 
 
@@ -20,9 +20,7 @@ class EditFoodForm extends React.Component {
     const urlDate = date.split('-').join('');
     return this.props.dispatch(addNewFood(newFood))
       .then(res => this.props.dispatch(addFoodToDiary(res.food, date)))
-      .then(() => this.props.dispatch(setEntries()))
       .then(() => this.props.dispatch(deleteFoodFromDiary(this.props.entry._id)))
-      .then(() => this.props.dispatch(setEntries()))
       .then(this.props.history.push(`/dashboard/${urlDate}`));
   }
 

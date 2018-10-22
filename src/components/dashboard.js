@@ -6,7 +6,6 @@ import requiresLogin from './requires-login';
 import {
   fetchAllDiaries,
   fetchDiary,
-  setEntries,
   deleteFoodFromDiary
 } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
