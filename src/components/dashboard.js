@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
@@ -30,18 +31,25 @@ export class Dashboard extends React.Component {
       return <Spinner name="pacman" />;
     }
 
-    let points;
-    // TODO: Fix Point Goal Display when goal isn't set
-    points = (
+    const date = moment(this.props.match.params.date, 'YYYYMMDD').calendar(null, {
+      sameDay: '[Today]',
+      nextDay: '[Tomorrow]',
+      nextWeek: 'MMM Do, YYYY',
+      lastDay: '[Yesterday]',
+      lastWeek: 'MMM Do, YYYY',
+      sameElse: 'MMM Do, YYYY'
+    });
+    const goalPoints = this.props.currentUser.goal || 0;
+    const points = (
       <header className="points-header">
-        <h2 className="screen-header">Today&apos;s Points</h2>
+        <h2 className="screen-header">Points for {date}</h2>
         <div className="points-progress">
           <div className="day-points">
             <div className="points-count">{this.props.currentDiary.points}</div>
             <p className="points-type">Current</p>
           </div>
           <div className="goal-points">
-            <div className="points-count">{this.props.currentUser.goal}</div>
+            <div className="points-count">{goalPoints}</div>
             <p className="points-type">Goal</p>
           </div>
         </div>

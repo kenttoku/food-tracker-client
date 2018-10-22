@@ -49,7 +49,6 @@ export class App extends React.Component {
 
     clearInterval(this.refreshInterval);
   }
-  // TODO: Wrap edit food form to fetch data.
   render() {
     return (
       <div className="app">
