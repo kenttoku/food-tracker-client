@@ -11,6 +11,7 @@ import {
 import { isValidDate } from '../actions/utils';
 import deleteButton from '../assets/baseline-delete_forever-24px.svg';
 import './dashboard.css';
+import './points-header.css';
 import Spinner from 'react-spinkit';
 
 export class Dashboard extends React.Component {
@@ -53,12 +54,12 @@ export class Dashboard extends React.Component {
     const entriesElements = this.props.entries.map(entry => {
       return (<li key={entry._id} className="entry-list-item">
         <Link to={`/dashboard/${this.props.match.params.date}/edit/${entry._id}/`}>{entry.food.name}</Link>
-        <a
+        <button
           className="deleteEntryButton"
           onClick={() => this.deleteEntry(entry._id)}
         >
           <img src={deleteButton} alt="delete" />
-        </a>
+        </button>
       </li>);
     });
 

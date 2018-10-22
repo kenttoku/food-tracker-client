@@ -25,9 +25,9 @@ class AddFoodScreen extends React.Component {
       return (
         <li key={food.id} className="food-list-item">
           {food.name}
-          <a onClick={() => this.addFood(food.id)}>
+          <button onClick={() => this.addFood(food.id)}>
             <img src={addButton} alt="add food" />
-          </a>
+          </button>
         </li>);
     });
     return (

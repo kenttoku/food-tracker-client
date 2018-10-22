@@ -9,7 +9,6 @@ import {
 import chevronLeft from '../assets/baseline-chevron_left-24px.svg';
 import chevronRight from '../assets/baseline-chevron_right-24px.svg';
 import './calendar.css';
-import PointsHeader from './points-header';
 
 class Calendar extends React.Component {
   componentDidMount() {
