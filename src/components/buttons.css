@@ -30,3 +30,13 @@
 .btn-red {
   background-color: #F44336;
 }
+
+.settings-button {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logout-button {
+  margin: 0 auto;
+  width: 100%;
+}

@@ -19,17 +19,16 @@ class SettingsScreen extends React.Component {
         <HeaderBar title="Settings"/>
         <main>
           <SettingsForm />
-          <button onClick={() => this.logOut()}>Log out</button>
+          <button className="btn-black logout-button"
+            onClick={() => this.logOut()}>Log out</button>
         </main>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.auth.currentUser
-  };
-};
+const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser
+});
 
 export default requiresLogin()(connect(mapStateToProps)(SettingsScreen));

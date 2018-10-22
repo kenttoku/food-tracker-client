@@ -81,6 +81,7 @@ export class SettingsForm extends React.Component {
           validate={[required, nonEmpty]}
         />
         <button
+          className="btn-blue settings-button"
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
           Update Profile
@@ -90,16 +91,14 @@ export class SettingsForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
+  username: state.auth.currentUser.username,
+  initialValues: {
     username: state.auth.currentUser.username,
-    initialValues: {
-      username: state.auth.currentUser.username,
-      email: state.auth.currentUser.email,
-      goal: state.auth.currentUser.goal
-    }
-  };
-};
+    email: state.auth.currentUser.email,
+    goal: state.auth.currentUser.goal
+  }
+});
 
 const form = reduxForm({
   form: 'settings',
