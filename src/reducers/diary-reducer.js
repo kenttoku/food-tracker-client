@@ -41,6 +41,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === FETCH_DIARY_SUCCESS) {
     return Object.assign({}, state, {
       currentDiary: action.diary,
+      entries: action.diary.entries,
       loading: false,
       error: null
     });
@@ -57,6 +58,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === ADD_FOOD_TO_DIARY_SUCCESS) {
     return Object.assign({}, state, {
       currentDiary: action.diary,
+      entries: action.diary.entries,
       loading: false,
       error: null
     });
@@ -73,6 +75,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === DELETE_FOOD_FROM_DIARY_SUCCESS) {
     return Object.assign({}, state, {
       currentDiary: action.diary,
+      entries: action.diary.entries,
       loading: false,
       error: null
     });

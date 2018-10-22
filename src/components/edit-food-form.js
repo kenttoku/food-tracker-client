@@ -14,7 +14,7 @@ const minValue = min => value =>
   value && value < min ? `Must be at least ${min}` : undefined;
 const minValue0 = minValue(0);
 
-export class EditFoodForm extends React.Component {
+class EditFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
     const urlDate = date.split('-').join('');
@@ -65,6 +65,7 @@ export class EditFoodForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log(state.diary.entries);
   let date = props.match.params.date;
   if (date) {
     date = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);

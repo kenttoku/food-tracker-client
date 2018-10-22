@@ -5,7 +5,7 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import AddFoodScreen from './add-food-screen';
 import Calendar from './calendar';
 import Dashboard from './dashboard';
-import EditFoodForm from './edit-food-form';
+import EditFoodScreen from './edit-food-screen';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import LoginPage from './login-page';
@@ -58,7 +58,7 @@ export class App extends React.Component {
             <Route exact path="/login" component={LoginPage} />
             <Route path="/dashboard/:date/calendar" component={Calendar} />
             <Route path="/dashboard/:date/settings" component={SettingsScreen} />
-            <Route path="/dashboard/:date/edit/:entryId" component={EditFoodForm} />
+            <Route path="/dashboard/:date/edit/:entryId" component={EditFoodScreen} />
             <Route path="/dashboard/:date/add" component={AddFoodScreen} />
             <Route path="/dashboard/:date/newfood" component={NewFoodForm} />
             <Route path="/dashboard/:date" component={Dashboard} />

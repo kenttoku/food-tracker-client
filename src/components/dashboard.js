@@ -18,14 +18,12 @@ export class Dashboard extends React.Component {
   componentDidMount() {
     if (isValidDate(this.props.match.params.date)) {
       this.props.dispatch(fetchAllDiaries());
-      this.props.dispatch(fetchDiary(this.props.match.params.date))
-        .then(() => this.props.dispatch(setEntries()));
+      this.props.dispatch(fetchDiary(this.props.match.params.date));
     }
   }
 
   deleteEntry(entryId) {
-    this.props.dispatch(deleteFoodFromDiary(entryId))
-      .then(() => this.props.dispatch(setEntries()));
+    this.props.dispatch(deleteFoodFromDiary(entryId));
   }
 
   render() {
@@ -38,6 +36,7 @@ export class Dashboard extends React.Component {
     }
 
     let points = 'Loading...';
+    // TODO: Fix Point Goal Display when goal isn't set
     points = (
       <header className="points-header">
         <h2 className="screen-header">Today&apos;s Points</h2>
