@@ -6,7 +6,6 @@ import AddFoodScreen from './add-food-screen';
 import Calendar from './calendar';
 import Dashboard from './dashboard';
 import EditFoodScreen from './edit-food-screen';
-import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import LoginPage from './login-page';
 import Navbar from './navbar';
@@ -55,7 +54,6 @@ export class App extends React.Component {
     return (
       <div className="app">
         <Route path="/dashboard/:date" component={Navbar} />
-        {/* <HeaderBar /> */}
         <div className="container">
           <Switch>
             <Route exact path="/register" component={RegistrationPage} />
