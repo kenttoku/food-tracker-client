@@ -1,10 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import {
-  fetchAllDiaries,
-  fetchDiary,
-} from '../actions/diary-actions';
+import { Link } from 'react-router-dom';
+import { fetchAllDiaries, fetchDiary } from '../actions/diary-actions';
 
 import chevronLeft from '../assets/baseline-chevron_left-24px.svg';
 import chevronRight from '../assets/baseline-chevron_right-24px.svg';
@@ -20,17 +18,26 @@ class Calendar extends React.Component {
   renderHeader() {
     const calHeader = moment(this.props.match.params.date, 'YYYYMMDD')
       .format('MMM YYYY');
+    const prevDate = moment(this.props.match.params.date, 'YYYYMMDD')
+      .subtract(1, 'month').format('YYYYMMDD');
+
+    const nextDate = moment(this.props.match.params.date, 'YYYYMMDD')
+      .add(1, 'month').format('YYYYMMDD');
     return (
       <div className="calendar-header row flex-middle">
-        <div className="col col-start" onClick={() => this.prevMonth()}>
-          <img className="calendar-icon-left" src={chevronLeft} alt="previous month" />
-        </div>
+        <Link to={`/dashboard/${prevDate}/calendar`}>
+          <div className="col col-start">
+            <img className="calendar-icon-left" src={chevronLeft} alt="previous month" />
+          </div>
+        </Link>
         <div className="col col-center">
           <span>{calHeader}</span>
         </div>
-        <div className="col col-end" onClick={() => this.nextMonth()}>
-          <img className="calendar-icon-right" src={chevronRight} alt="next month" />
-        </div>
+        <Link to={`/dashboard/${nextDate}/calendar`}>
+          <div className="col col-end">
+            <img className="calendar-icon-right" src={chevronRight} alt="next month" />
+          </div>
+        </Link>
       </div>
     );
   }
@@ -77,19 +84,18 @@ class Calendar extends React.Component {
         formattedDate = day.format('D');
         const cloneDay = day.toDate();
 
+        const date = day.format('YYYYMMDD');
+
         // Get Points for the day
         let points = this.getPoints(day);
+        const cellClass = day.isSame(selectedDate, 'month') ? (day.isSame(selectedDate, 'day') ? 'selected' : '') : 'disabled';
         days.push(
-          <div
-            className={`col cell ${
-              day.isSame(selectedDate, 'day') ? 'selected' : ''
-            }`}
-            key={day}
-            onClick={() => this.onDateClick(cloneDay)}
-          >
+          <Link to={`/dashboard/${formattedDate}`}
+            className={`col cell ${cellClass}`}
+            key={day}>
             <span className="number">{formattedDate}</span>
             <div className="bg">{points}</div>
-          </div>
+          </Link>
         );
         day.add(1, 'd');
       }
@@ -106,18 +112,6 @@ class Calendar extends React.Component {
   onDateClick(day) {
     const formattedDate = moment(day).format('YYYYMMDD');
     this.props.history.push(`/dashboard/${formattedDate}`);
-  }
-
-  nextMonth() {
-    const newDate = moment(this.props.match.params.date, 'YYYYMMDD')
-      .add(1, 'month').format('YYYYMMDD');
-    this.props.history.push(`/dashboard/${newDate}/calendar`);
-  }
-
-  prevMonth() {
-    const newDate = moment(this.props.match.params.date, 'YYYYMMDD')
-      .subtract(1, 'month').format('YYYYMMDD');
-    this.props.history.push(`/dashboard/${newDate}/calendar`);
   }
 
   render() {

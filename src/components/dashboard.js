@@ -28,7 +28,7 @@ export class Dashboard extends React.Component {
     }
 
     if (this.props.loading) {
-      return <Spinner className="spinner"  name="pacman" />;
+      return <Spinner className="spinner" name="pacman" />;
     }
 
     const date = moment(this.props.match.params.date, 'YYYYMMDD').calendar(null, {

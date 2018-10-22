@@ -52,6 +52,15 @@
   border: 2px solid var(--main-color);
 }
 
+.calendar .body .disabled {
+  color: var(--text-color-light);
+}
+
+.calendar .body {
+  text-decoration: none;
+}
+
+
 .calendar .body .row {
   border-bottom: 1px solid var(--border-color);
 }
