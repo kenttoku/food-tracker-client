@@ -35,6 +35,10 @@
     margin-bottom: 16px;
   }
 
+  /* .navbar {
+    position: static;
+  } */
+
   .navbar-link img {
     display: inline-block;
   }
