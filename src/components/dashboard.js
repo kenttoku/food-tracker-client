@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchAllDiaries, fetchDiary, deleteFoodFromDiary } from '../actions/diary-actions';
 import { isValidDate } from '../actions/utils';
-import deleteButton from '../assets/baseline-delete_forever-24px.svg';
+import deleteButton from '../assets/baseline-clear-24px.svg';
 import './dashboard.css';
 import './points-header.css';
 import Spinner from 'react-spinkit';
