@@ -78,7 +78,7 @@
     top: 8px;
     border: none;
     background-color: transparent;
-    max-width: 960px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -86,7 +86,7 @@
   }
 
   nav a {
-    flex-basis: 15%;
+    flex-basis: 13%;
   }
 
   nav img {
@@ -104,5 +104,9 @@
 @media (min-width: 1200px) {
   .container {
     max-width: 1170px;
+  }
+
+  .screen-header {
+    padding-left: 176px;
   }
 }
