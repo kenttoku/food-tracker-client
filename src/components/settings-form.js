@@ -24,7 +24,7 @@ export class SettingsForm extends React.Component {
     const urlDate = moment().format('YYYYMMDD');
     return this.props
       .dispatch(updateUser(updatedUser))
-      .then(authToken => {
+      .then(({ authToken }) => {
         if (authToken) {
           const decodedToken = jwtDecode(authToken);
           this.props.dispatch(authSuccess(decodedToken.user));
