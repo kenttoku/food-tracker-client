@@ -20,28 +20,20 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar">
         <Link to={`/dashboard/${today}`}>
-          <div className="navbar-link">
-            <img src={homeButton} alt="home" />
-            <span>Home</span>
-          </div>
+          <img src={homeButton} alt="home" />
+          <span>Home</span>
         </Link>
         <Link to={`/dashboard/${this.props.match.params.date}/add`}>
-          <div className="navbar-link">
-            <img src={addButton} alt="add" />
-            <span>Add</span>
-          </div>
+          <img src={addButton} alt="add" />
+          <span>Add</span>
         </Link>
         <Link to={`/dashboard/${today}/calendar`}>
-          <div className="navbar-link">
-            <img src={calendarButton} alt="calendar" />
-            <span>Calendar</span>
-          </div>
+          <img src={calendarButton} alt="calendar" />
+          <span>Calendar</span>
         </Link>
         <Link to={`/dashboard/${today}/settings`}>
-          <div className="navbar-link">
-            <img src={settingsButton} alt="settings" />
-            <span>Settings</span>
-          </div>
+          <img src={settingsButton} alt="settings" />
+          <span>Settings</span>
         </Link>
       </nav>
     );
