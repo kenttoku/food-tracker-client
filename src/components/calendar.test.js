@@ -5,6 +5,15 @@ import { Calendar } from './calendar';
 
 describe('<Calendar />', () => {
   it('Renders without crashing', () => {
-    shallow(<Calendar />);
+    const match = { params: { date: '20181024' } };
+    const diaries = [];
+    const dispatch = jest.fn();
+    shallow(
+      <Calendar
+        match={match}
+        diaries={diaries}
+        dispatch={dispatch}
+      />
+    );
   });
 });

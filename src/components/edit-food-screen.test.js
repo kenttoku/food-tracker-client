@@ -5,6 +5,13 @@ import { EditFoodScreen } from './edit-food-screen';
 
 describe('<EditFoodScreen />', () => {
   it('Renders without crashing', () => {
-    shallow(<EditFoodScreen />);
+    const match = { params: { date: '20181024' } };
+    const dispatch = jest.fn();
+    shallow(
+      <EditFoodScreen
+        match={match}
+        dispatch={dispatch}
+      />
+    );
   });
 });

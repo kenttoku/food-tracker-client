@@ -5,6 +5,15 @@ import { AddFoodScreen } from './add-food-screen';
 
 describe('<AddFoodScreen />', () => {
   it('Renders without crashing', () => {
-    shallow(<AddFoodScreen />);
+    const match = { params: { date: '20181024' } };
+    const foodList = [];
+    const dispatch = jest.fn();
+    shallow(
+      <AddFoodScreen
+        match={match}
+        foodList={foodList}
+        dispatch={dispatch}
+      />
+    );
   });
 });
