@@ -11,7 +11,7 @@ import requiresLogin from './requires-login';
 import { isValidDate } from '../actions/utils';
 
 import './navbar.css';
-class Navbar extends React.Component {
+export class Navbar extends React.Component {
   render() {
     if (!isValidDate(this.props.match.params.date)) {
       return <Redirect to="/" />;

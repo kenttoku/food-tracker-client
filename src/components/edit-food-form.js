@@ -14,7 +14,7 @@ const minValue = min => value =>
   value && value < min ? `Must be at least ${min}` : undefined;
 const minValue0 = minValue(0);
 
-class EditFoodForm extends React.Component {
+export class EditFoodForm extends React.Component {
   onSubmit(values) {
     const { date, ...newFood } = values;
     const urlDate = date.split('-').join('');

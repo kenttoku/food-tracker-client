@@ -7,7 +7,7 @@ import { isValidDate } from '../actions/utils';
 import './edit-food-screen.css';
 import Spinner from 'react-spinkit';
 
-class EditFoodScreen extends React.Component {
+export class EditFoodScreen extends React.Component {
   componentDidMount() {
     if (isValidDate(this.props.match.params.date)) {
       this.props.dispatch(fetchDiary(this.props.match.params.date));

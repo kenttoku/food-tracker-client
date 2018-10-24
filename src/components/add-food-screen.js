@@ -9,7 +9,7 @@ import addButton from '../assets/baseline-add-24px.svg';
 import HeaderBar from './header-bar';
 import Spinner from 'react-spinkit';
 
-class AddFoodScreen extends React.Component {
+export class AddFoodScreen extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchAllFood());
   }

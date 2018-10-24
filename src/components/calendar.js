@@ -9,7 +9,7 @@ import chevronRight from '../assets/baseline-chevron_right-24px.svg';
 import './calendar.css';
 import HeaderBar from './header-bar';
 
-class Calendar extends React.Component {
+export class Calendar extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchAllDiaries());
     this.props.dispatch(fetchDiary(this.props.match.params.date));
