@@ -111,11 +111,11 @@ class Calendar extends React.Component {
     return (
       <div>
         <HeaderBar title="Calendar"/>
-        <div className="calendar">
+        <main className="calendar">
           {this.renderHeader()}
           {this.renderDays()}
           {this.renderCells()}
-        </div>
+        </main>
       </div>
     );
   }
