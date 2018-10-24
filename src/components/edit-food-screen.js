@@ -1,15 +1,15 @@
 import React from 'react';
+import moment from 'moment';
 import EditFoodForm from './edit-food-form';
 import { connect } from 'react-redux';
 import HeaderBar from './header-bar';
 import { fetchDiary } from '../actions/diary-actions';
-import { isValidDate } from '../actions/utils';
 import './edit-food-screen.css';
 import Spinner from 'react-spinkit';
 
 export class EditFoodScreen extends React.Component {
   componentDidMount() {
-    if (isValidDate(this.props.match.params.date)) {
+    if (moment(this.props.match.params.date, 'YYYYMMDD').format() !== 'Invalid date') {
       this.props.dispatch(fetchDiary(this.props.match.params.date));
     }
   }

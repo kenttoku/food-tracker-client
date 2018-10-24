@@ -1,10 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { fetchAllDiaries, fetchDiary, deleteFoodFromDiary } from '../actions/diary-actions';
-import { isValidDate } from '../actions/utils';
 import deleteButton from '../assets/baseline-clear-24px.svg';
 import './dashboard.css';
 import './points-header.css';
@@ -12,7 +11,7 @@ import Spinner from 'react-spinkit';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    if (isValidDate(this.props.match.params.date)) {
+    if (moment(this.props.match.params.date, 'YYYYMMDD').format() !== 'Invalid date') {
       this.props.dispatch(fetchAllDiaries());
       this.props.dispatch(fetchDiary(this.props.match.params.date));
     }
@@ -23,10 +22,6 @@ export class Dashboard extends React.Component {
   }
 
   render() {
-    if (!isValidDate(this.props.match.params.date)) {
-      return <Redirect to="/" />;
-    }
-
     if (this.props.loading) {
       return <Spinner className="spinner" name="pacman" />;
     }

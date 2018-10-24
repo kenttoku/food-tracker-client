@@ -8,13 +8,12 @@ import addButton from '../assets/baseline-add_circle-24px.svg';
 import calendarButton from '../assets/baseline-calendar_today-24px.svg';
 import settingsButton from '../assets/baseline-settings_applications-24px.svg';
 import requiresLogin from './requires-login';
-import { isValidDate } from '../actions/utils';
 
 import './navbar.css';
 
 export class Navbar extends React.Component {
   render() {
-    if (!isValidDate(this.props.match.params.date)) {
+    if (moment(this.props.match.params.date, 'YYYYMMDD').format() === 'Invalid date') {
       return <Redirect to="/" />;
     }
     const today = moment().format('YYYYMMDD');

@@ -21,7 +21,6 @@ describe('<Dashboard />', () => {
     );
   });
 
-
   it('Renders spinner when loading', () => {
     const match = { params: { date: '20181024' } };
     const currentUser = {};
