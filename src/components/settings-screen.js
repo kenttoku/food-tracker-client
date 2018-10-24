@@ -7,7 +7,7 @@ import requiresLogin from './requires-login';
 import { clearAuth } from '../actions/auth-actions';
 import { clearAuthToken } from '../local-storage';
 
-class SettingsScreen extends React.Component {
+export class SettingsScreen extends React.Component {
   logOut() {
     this.props.dispatch(clearAuth());
     clearAuthToken();

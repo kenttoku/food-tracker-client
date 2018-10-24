@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './buttons.css';
 import './landing-page.css';
 
-function LandingPage(props) {
+export function LandingPage(props) {
   if (props.loggedIn) {
     const today = moment().format('YYYYMMDD');
     return <Redirect to={`/dashboard/${today}`} />;
