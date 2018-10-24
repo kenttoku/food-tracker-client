@@ -11,6 +11,7 @@ import requiresLogin from './requires-login';
 import { isValidDate } from '../actions/utils';
 
 import './navbar.css';
+
 export class Navbar extends React.Component {
   render() {
     if (!isValidDate(this.props.match.params.date)) {
@@ -41,8 +42,7 @@ export class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  entries: state.diary.entries,
-  username: state.auth.currentUser.username
+  entries: state.diary.entries
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Navbar));
