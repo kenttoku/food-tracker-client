@@ -47,4 +47,26 @@ describe('<Navbar />', () => {
     expect(links.at(3).props().to).toBe(`/dashboard/${today}/settings`);
     expect(links.at(3).children('span').at(0).text()).toBe('Settings');
   });
+
+  it('Redirects the user for invalid date', () => {
+    const match = { params: { date: '20181032' } };
+    const wrapper = shallow(<Navbar match={match}/>);
+    const redirect = wrapper.find('Redirect');
+    expect(redirect.length).toBe(1);
+  });
+
+  it('Redirects the user for missing date', () => {
+    const match = { params: {} };
+    const wrapper = shallow(<Navbar match={match}/>);
+    const redirect = wrapper.find('Redirect');
+    expect(redirect.length).toBe(1);
+  });
+
+  it('Should not redirect for correct date', () => {
+    const today = moment().format('YYYYMMDD');
+    const match = { params: { date: today } };
+    const wrapper = shallow(<Navbar match={match}/>);
+    const redirect = wrapper.find('Redirect');
+    expect(redirect.length).toBe(0);
+  });
 });
