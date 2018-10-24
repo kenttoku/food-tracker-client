@@ -4,10 +4,8 @@ import { shallow } from 'enzyme';
 import { LoginForm } from './login-form';
 
 describe('<LoginForm />', () => {
-  // it('Renders without crashing', () => {
-  //   shallow(<LoginForm />);
-  // });
-
-  it('placeholder', () => {
+  it('Renders without crashing', () => {
+    const handleSubmit = jest.fn();
+    shallow(<LoginForm handleSubmit={handleSubmit} />);
   });
 });

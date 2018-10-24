@@ -4,10 +4,8 @@ import { shallow } from 'enzyme';
 import { NewFoodForm } from './new-food-form';
 
 describe('<NewFoodForm />', () => {
-  // it('Renders without crashing', () => {
-  //   shallow(<NewFoodForm />);
-  // });
-
-  it('placeholder', () => {
+  it('Renders without crashing', () => {
+    const handleSubmit = jest.fn();
+    shallow(<NewFoodForm handleSubmit={handleSubmit} />);
   });
 });

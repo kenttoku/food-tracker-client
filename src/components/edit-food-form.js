@@ -25,7 +25,7 @@ export class EditFoodForm extends React.Component {
   }
 
   render() {
-    if (!isValidDate(this.props.date)) {
+    if (!isValidDate(this.props.match.params.date)) {
       return <Redirect to="/" />;
     }
 
