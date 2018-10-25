@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 // Assets
 import './buttons.css';
 import './landing-page.css';
+import bg from '../assets/food-business-lunch-restaurant-lunch-163018.jpeg';
 
 export function LandingPage(props) {
   if (props.loggedIn) {
@@ -14,6 +15,10 @@ export function LandingPage(props) {
 
   return (
     <div className="landing-page">
+      <div className="bg">
+        <img src={bg} />
+      </div>
+
       <div className="landing-header">
         <h1 className="landing-headline">Food Tracker</h1>
         <p className="landing-subtitle">A simple, intuitive food diary</p>
@@ -27,6 +32,7 @@ export function LandingPage(props) {
         </Link>
       </div>
     </div>
+
   );
 }
 

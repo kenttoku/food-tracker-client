@@ -3,7 +3,7 @@
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 56px;
+  padding-bottom: 56px;
   height:100%;
 }
 
@@ -27,6 +27,7 @@
 @media (min-width: 768px) {
   .container {
     max-width: 740px;
+    margin-bottom: 0px;
   }
 
   .submit-food-button, .new-food-button {
