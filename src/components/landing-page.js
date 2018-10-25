@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import './buttons.css';
 import './landing-page.css';
-import img from '../assets/baseline-add_circle-24px.svg';
+import dashboard from '../assets/dashboard-thumbnail.PNG';
+import calendar from '../assets/calendar-thumbnail.PNG';
+import newFood from '../assets/new-thumbnail.PNG';
 
 export function LandingPage(props) {
   if (props.loggedIn) {
@@ -29,7 +31,7 @@ export function LandingPage(props) {
         </div>
       </section>
       <section className="feature left">
-        <img src={img}/>
+        <img src={dashboard}/>
         <div className="desc">
           <h4>Lorem ipsum</h4>
           <p>
@@ -38,7 +40,7 @@ export function LandingPage(props) {
         </div>
       </section>
       <section className="feature right">
-        <img src={img} />
+        <img src={newFood} />
         <div className="desc">
           <h4>Lorem ipsum</h4>
           <p>
@@ -47,7 +49,7 @@ export function LandingPage(props) {
         </div>
       </section>
       <section className="feature left">
-        <img src={img}/>
+        <img src={calendar}/>
         <div className="desc">
           <h4>Lorem ipsum</h4>
           <p>
