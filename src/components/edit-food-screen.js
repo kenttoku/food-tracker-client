@@ -19,7 +19,7 @@ export class EditFoodScreen extends React.Component {
       return <Spinner className="spinner" name="pacman" />;
     }
     return (
-      <div className="edit-form">
+      <div className="edit-form container">
         <HeaderBar title="Edit Entry"/>
         <main>
           <EditFoodForm />

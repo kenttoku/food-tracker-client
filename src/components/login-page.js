@@ -12,7 +12,7 @@ export function LoginPage(props) {
   }
 
   return (
-    <div className="login">
+    <div className="login container">
       <HeaderBar title="Login"/>
       <main>
         <LoginForm />

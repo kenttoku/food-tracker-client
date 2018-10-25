@@ -63,7 +63,7 @@ export class Dashboard extends React.Component {
     });
 
     return (
-      <div className="dashboard">
+      <div className="dashboard container">
         {points}
         <main className="entries">
           <ul className="entry-list">{entriesElements}</ul>

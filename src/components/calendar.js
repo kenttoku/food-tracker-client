@@ -108,7 +108,7 @@ export class Calendar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <HeaderBar title="Calendar"/>
         <main className="calendar">
           {this.renderHeader()}

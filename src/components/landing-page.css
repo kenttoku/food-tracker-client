@@ -6,6 +6,14 @@
   height: 100%;
 }
 
+.landing-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
 .landing-page-logo {
   width: 70%;
   padding: 24px;
@@ -33,7 +41,6 @@
   flex-wrap: wrap;
   height: 130px;
   min-width: 320px;
-  position: fixed;
   width: 100%;
   bottom: 0;
 }

@@ -15,22 +15,24 @@ export function LandingPage(props) {
 
   return (
     <div className="landing-page">
-      <div className="bg">
-        <img src={bg} />
-      </div>
+      <section className="landing-main">
+        <div className="bg">
+          <img src={bg} />
+        </div>
 
-      <div className="landing-header">
-        <h1 className="landing-headline">Food Tracker</h1>
-        <p className="landing-subtitle">A simple, intuitive food diary</p>
-      </div>
-      <div className="landing-page-buttons">
-        <Link to="/register">
-          <button className="btn-blue landing-btn">Register</button>
-        </Link>
-        <Link to="/login" >
-          <button className="btn-black landing-btn">Login</button>
-        </Link>
-      </div>
+        <div className="landing-header">
+          <h1 className="landing-headline">Food Tracker</h1>
+          <p className="landing-subtitle">A simple, intuitive food diary</p>
+        </div>
+        <div className="landing-page-buttons">
+          <Link to="/register">
+            <button className="btn-blue landing-btn">Register</button>
+          </Link>
+          <Link to="/login" >
+            <button className="btn-green landing-btn">Login</button>
+          </Link>
+        </div>
+      </section>
     </div>
 
   );

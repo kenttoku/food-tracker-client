@@ -34,7 +34,7 @@ export class AddFoodScreen extends React.Component {
         </li>);
     });
     return (
-      <div className="add-food">
+      <div className="add-food container">
         <HeaderBar title="Add Food"/>
         <main>
           <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>

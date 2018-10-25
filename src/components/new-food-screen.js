@@ -5,7 +5,7 @@ import HeaderBar from './header-bar';
 export default class NewFoodScreen extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <HeaderBar title="New Entry"/>
         <main>
           <NewFoodForm />

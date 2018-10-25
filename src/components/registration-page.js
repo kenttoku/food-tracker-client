@@ -12,7 +12,7 @@ export function RegistrationPage(props) {
     return <Redirect to={`/dashboard/${today}`} />;
   }
   return (
-    <div className="registration-page">
+    <div className="registration-page container">
       <HeaderBar title="Register"/>
       <main>
         <RegistrationForm />

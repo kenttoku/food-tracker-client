@@ -15,7 +15,7 @@ export class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <HeaderBar title="Settings"/>
         <main>
           <SettingsForm />
