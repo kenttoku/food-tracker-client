@@ -3,8 +3,7 @@
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 56px;
-  height:100%;
+  margin-bottom: 56px;
 }
 
 .container:before, .container:after {

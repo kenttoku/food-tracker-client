@@ -34,15 +34,17 @@ export class AddFoodScreen extends React.Component {
         </li>);
     });
     return (
-      <div className="add-food container">
+      <div className="container">
         <HeaderBar title="Add Food"/>
         <main>
-          <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>
-            <button className="btn-black new-food-button">Create New Food</button>
-          </Link>
-          <ul className="food-list">
-            {foodListElements}
-          </ul>
+          <div className="add-food">
+            <Link to={`/dashboard/${this.props.match.params.date}/newfood`}>
+              <button className="btn-black new-food-button">Create New Food</button>
+            </Link>
+            <ul className="food-list">
+              {foodListElements}
+            </ul>
+          </div>
         </main>
       </div>
     );
