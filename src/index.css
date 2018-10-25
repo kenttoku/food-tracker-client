@@ -20,7 +20,7 @@
 }
 
 .app {
-  height: 100vh;
+  height: 100% !important;
 }
 
 html,body{
