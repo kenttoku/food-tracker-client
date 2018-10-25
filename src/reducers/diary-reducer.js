@@ -8,7 +8,6 @@ import {
   DELETE_FOOD_FROM_DIARY_REQUEST,
   DELETE_FOOD_FROM_DIARY_SUCCESS,
   DELETE_FOOD_FROM_DIARY_ERROR,
-  SET_DATE,
   FETCH_ALL_DIARIES_SUCCESS,
   FETCH_ALL_DIARIES_REQUEST,
   FETCH_ALL_DIARIES_ERROR
@@ -23,11 +22,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === SET_DATE) {
-    return Object.assign({}, state, {
-      date: action.date
-    });
-  } else if (action.type === FETCH_DIARY_REQUEST) {
+  if (action.type === FETCH_DIARY_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
       error: null

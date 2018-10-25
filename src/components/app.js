@@ -64,8 +64,6 @@ export class App extends React.Component {
           <Route path="/dashboard/:date" component={Dashboard} />
           <Route path="/" component={LandingPage} />
         </Switch>
-        <div className="container">
-        </div>
       </div>
     );
   }

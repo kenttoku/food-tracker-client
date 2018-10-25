@@ -5,7 +5,6 @@ import { Link, Redirect } from 'react-router-dom';
 // Assets
 import './buttons.css';
 import './landing-page.css';
-import bg from '../assets/food-business-lunch-restaurant-lunch-163018.jpeg';
 
 export function LandingPage(props) {
   if (props.loggedIn) {
@@ -29,11 +28,14 @@ export function LandingPage(props) {
           </Link>
         </div>
       </section>
-      <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
+      <section>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
 
 
-      </p>
+        </p>
+      </section>
     </div>
 
   );

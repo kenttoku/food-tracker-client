@@ -1,12 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const SET_DATE = 'SET_DATE';
-export const setDate = yyyymmdd => ({
-  type: SET_DATE,
-  yyyymmdd
-});
-
 // Async Actions
 export const FETCH_DIARY_REQUEST = 'FETCH_DIARY_REQUEST';
 export const fetchDiaryRequest = () => ({
@@ -118,7 +112,7 @@ export const deleteFoodFromDiary = (entryId) => (dispatch, getState)  => {
 
 export const FETCH_ALL_DIARIES_REQUEST = 'FETCH_ALL_DIARIES_REQUEST';
 export const fetchAllDiariesRequest = () => ({
-  type: FETCH_DIARY_REQUEST
+  type: FETCH_ALL_DIARIES_REQUEST
 });
 
 export const FETCH_ALL_DIARIES_SUCCESS = 'FETCH_ALL_DIARIES_SUCCESS';
