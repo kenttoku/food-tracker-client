@@ -16,10 +16,6 @@ export function LandingPage(props) {
   return (
     <div className="landing-page">
       <section className="landing-main">
-        <div className="bg">
-          <img src={bg} />
-        </div>
-
         <div className="landing-header">
           <h1 className="landing-headline">Food Tracker</h1>
           <p className="landing-subtitle">A simple, intuitive food diary</p>
@@ -33,6 +29,11 @@ export function LandingPage(props) {
           </Link>
         </div>
       </section>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
+
+
+      </p>
     </div>
 
   );
