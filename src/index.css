@@ -19,8 +19,14 @@
   box-sizing: border-box;
 }
 
-html, body, .app {
-    height: 100vh;
+.app {
+  height: 100% !important;
+}
+
+html,body{
+  -webkit-overflow-scrolling : touch !important;
+  overflow: auto !important;
+  height: 100% !important;
 }
 
 body {
