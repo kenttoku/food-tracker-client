@@ -4,8 +4,9 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { withRouter } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
+import HelpSection from './help-section';
 // Actions
-import { addNewFood, setHelp } from '../actions/food-actions';
+import { addNewFood } from '../actions/food-actions';
 import { addFoodToDiary, deleteFoodFromDiary } from '../actions/diary-actions';
 
 
@@ -14,10 +15,6 @@ const minValue = min => value =>
 const minValue0 = minValue(0);
 
 export class EditFoodForm extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(setHelp(false));
-  }
-
   onSubmit(values) {
     const { date, ...newFood } = values;
     const urlDate = date.split('-').join('');
@@ -27,19 +24,7 @@ export class EditFoodForm extends React.Component {
       .then(this.props.history.push(`/dashboard/${urlDate}`));
   }
 
-  helpButtonClicked(e) {
-    e.preventDefault();
-    this.props.dispatch(setHelp(!this.props.showHelp));
-  }
-
   render() {
-    let helpClass = 'hidden';
-    if (this.props.showHelp) {
-      helpClass = '';
-    } else {
-      helpClass = 'hidden';
-    }
-
     const categories = [
       'Fruits',
       'Vegetables',
@@ -84,16 +69,7 @@ export class EditFoodForm extends React.Component {
           label="Name"
         />
         <h3 className="serving-count">Servings</h3>
-        <button className="need-help" onClick={e => this.helpButtonClicked(e)}>Need Help?</button>
-
-        <section className={helpClass}>
-          <h4>Which category do I choose?</h4>
-          <p>Is a tomato a fruit or a vegetable? Pick whichever one you like. Just make sure to use common sense. If you are really having trouble, choose the category that appears lower on the form.</p>
-
-          <h4>How many servings is it?</h4>
-          <p>Food labels will tell you different things, but for this system use 100 calories as a guideline for 1 serving</p>
-        </section>
-
+        <HelpSection />
         {categoryFields}
         <button
           className="btn-black submit-food-button"
@@ -135,8 +111,7 @@ const mapStateToProps = (state, props) => {
   return {
     initialValues,
     entry,
-    date: props.match.params.date,
-    showHelp: state.food.showHelp
+    date: props.match.params.date
   };
 };
 

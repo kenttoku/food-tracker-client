@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
+import HelpSection from './help-section';
 import { withRouter } from 'react-router-dom';
 import { required, nonEmpty } from '../validators';
 import { addNewFood } from '../actions/food-actions';
@@ -68,6 +69,7 @@ export class NewFoodForm extends React.Component {
             label="Name"
           />
           <h3 className="serving-count">Servings</h3>
+          <HelpSection />
           {categoryFields}
           <button
             className="btn-black submit-food-button"
