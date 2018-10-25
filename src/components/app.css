@@ -57,8 +57,16 @@
     background-color: var(--bg-color)
   }
 
-  
+  .feature .desc {
+    width: 66%;
+    flex-grow: 3;
+    padding: 24px;
+  }
 
+  .feature img {
+    width: 33%;
+    flex-grow: 1;
+  }
 }
 
 @media (min-width: 992px) {
