@@ -4,17 +4,23 @@ import {
   FETCH_ALL_FOOD_ERROR,
   ADD_NEW_FOOD_REQUEST,
   ADD_NEW_FOOD_SUCCESS,
-  ADD_NEW_FOOD_ERROR
+  ADD_NEW_FOOD_ERROR,
+  SET_HELP
 } from '../actions/food-actions';
 
 const initialState = {
   foodList: [],
   loading: false,
-  error: null
+  error: null,
+  showHelp: false
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === FETCH_ALL_FOOD_REQUEST) {
+  if (action.type === SET_HELP) {
+    return Object.assign({}, state, {
+      showHelp: action.showHelp
+    });
+  } else if (action.type === FETCH_ALL_FOOD_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
       error: null

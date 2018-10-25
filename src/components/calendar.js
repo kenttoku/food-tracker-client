@@ -84,7 +84,6 @@ export class Calendar extends React.Component {
         formattedDate = day.format('D');
         const date = day.format('YYYYMMDD');
 
-        // Get Points for the day
         let points = this.getPoints(day);
         const cellClass = day.isSame(selectedDate, 'month') ? (day.isSame(selectedDate, 'day') ? 'selected' : '') : 'disabled';
         days.push(
@@ -92,7 +91,7 @@ export class Calendar extends React.Component {
             className={`col cell ${cellClass}`}
             key={day}>
             <span className="number">{formattedDate}</span>
-            <div className="bg">{points}</div>
+            <div className="pt">{points}</div>
           </Link>
         );
         day.add(1, 'd');

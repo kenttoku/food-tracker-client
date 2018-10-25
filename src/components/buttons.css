@@ -48,3 +48,11 @@
   left: 0;
   right: 0;
 }
+
+/* .help-text{
+  display: none;
+}
+
+input#need-help:checked ~ .help-text {
+  display: block;
+} */

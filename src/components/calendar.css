@@ -82,7 +82,7 @@
   font-weight: 700;
 }
 
-.calendar .body .cell .bg {
+.calendar .body .cell .pt {
   position: absolute;
   width: 100%;
   bottom: 15px;

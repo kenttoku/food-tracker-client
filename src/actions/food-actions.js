@@ -1,6 +1,12 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
+export const SET_HELP = 'SET_HELP';
+export const setHelp = showHelp => ({
+  type: SET_HELP,
+  showHelp
+});
+
 export const FETCH_ALL_FOOD_REQUEST = 'FETCH_FOOD_REQUEST';
 export const fetchAllFoodRequest = () => ({
   type: FETCH_ALL_FOOD_REQUEST

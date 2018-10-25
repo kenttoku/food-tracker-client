@@ -8,12 +8,10 @@ describe('<Calendar />', () => {
     const match = { params: { date: '20181024' } };
     const diaries = [];
     const dispatch = jest.fn();
-    shallow(
-      <Calendar
-        match={match}
-        diaries={diaries}
-        dispatch={dispatch}
-      />
-    );
+    shallow(<Calendar
+      match={match}
+      diaries={diaries}
+      dispatch={dispatch}
+    />);
   });
 });
