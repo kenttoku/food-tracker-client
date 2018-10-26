@@ -65,3 +65,10 @@ You can reference past days by clicking on the calendar.
 You can change your settings by clicking on the settings.
 
 ![settings](https://i.imgur.com/Gb8iKDz.png)
+
+## Installation
+
+Clone this repo and run 
+```
+npm install
+```
