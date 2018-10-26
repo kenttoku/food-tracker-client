@@ -22,7 +22,7 @@ export class HelpSection extends Component {
 
     return (
       <div>
-        <button className="need-help" onClick={e => this.helpButtonClicked(e)}>Need Help?</button>
+        <button type="button" className="need-help" onClick={e => this.helpButtonClicked(e)}>Need Help?</button>
 
         <section className={helpClass}>
           <h4>Which category do I choose?</h4>
