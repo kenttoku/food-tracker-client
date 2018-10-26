@@ -89,7 +89,9 @@ export class Calendar extends React.Component {
         days.push(
           <Link to={`/dashboard/${date}`}
             className={`col cell ${cellClass}`}
-            key={day}>
+            key={day}
+            aria-label={`${day.format('MMMM Do')} ${points} points`}
+          >
             <span className="number">{formattedDate}</span>
             <div className="pt">{points}</div>
           </Link>
