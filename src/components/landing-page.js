@@ -30,33 +30,36 @@ export function LandingPage(props) {
           </Link>
         </div>
       </section>
-      <section className="feature left">
-        <img src={dashboard}/>
-        <div className="desc">
-          <h4>Lorem ipsum</h4>
-          <p>
+      <div className="container">
+
+        <section className="feature left">
+          <img src={dashboard} alt="dashboard screen" />
+          <div className="desc">
+            <h4>Lorem ipsum</h4>
+            <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
-          </p>
-        </div>
-      </section>
-      <section className="feature right">
-        <img src={newFood} />
-        <div className="desc">
-          <h4>Lorem ipsum</h4>
-          <p>
+            </p>
+          </div>
+        </section>
+        <section className="feature right">
+          <img src={newFood} alt="new entry screen" />
+          <div className="desc">
+            <h4>Lorem ipsum</h4>
+            <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
-          </p>
-        </div>
-      </section>
-      <section className="feature left">
-        <img src={calendar}/>
-        <div className="desc">
-          <h4>Lorem ipsum</h4>
-          <p>
+            </p>
+          </div>
+        </section>
+        <section className="feature left">
+          <img src={calendar} alt="calendar screen" />
+          <div className="desc">
+            <h4>Lorem ipsum</h4>
+            <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
-          </p>
-        </div>
-      </section>
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
 
   );

@@ -28,7 +28,7 @@ export class AddFoodScreen extends React.Component {
       return (
         <li key={food.id} className="food-list-item">
           {food.name}
-          <button onClick={() => this.addFood(food.id)}>
+          <button onClick={() => this.addFood(food.id)} aria-label={`add ${food.name}`}>
             <img src={addButton} width="16px" alt="add food" />
           </button>
         </li>);
