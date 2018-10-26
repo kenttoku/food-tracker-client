@@ -5,11 +5,14 @@
 Food Tracker, as the name implies, tracks food on a points based system. 
 The project originated with a friend, who was looking for ways to track the quality of his diet, in addition to the standard calories that most food and fitness trackers provide.
 
+## Deployed Version
+(https://nameless-fjord-43314.herokuapp.com/)
+
 ## Technologies used
 
 ### Front End
 * React
-* Redux
+* Redux for state management
 * Moment.js for date calculation
 * Enzyme and Jest for testing
 
@@ -19,6 +22,7 @@ The project originated with a friend, who was looking for ways to track the qual
 * Mongoose
 * MongoDB for the database
 * Passport and JWTs for authentication
+* Mocha and Chai for testing
 
 ## When you visit the site, you will first need to sign up or log in
 
