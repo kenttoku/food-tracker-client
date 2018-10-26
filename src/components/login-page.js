@@ -16,7 +16,7 @@ export function LoginPage(props) {
       <HeaderBar title="Login"/>
       <main>
         <LoginForm />
-        <Link to="/"><button className="btn-black">Back</button></Link>
+        <Link to="/"><button className="btn-black btn-fixed">Back</button></Link>
       </main>
     </div>
   );

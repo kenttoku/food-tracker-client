@@ -61,3 +61,7 @@ button:disabled {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.btn-fixed {
+  min-width: 160px;
+}

@@ -35,27 +35,24 @@ export function LandingPage(props) {
         <section className="feature left">
           <img src={dashboard} alt="dashboard screen" />
           <div className="desc">
-            <h4>Lorem ipsum</h4>
-            <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
+            <h4>Calories don&apos;t tell the whole picture.</h4>
+            <p>200 calories of soda isn&apos;t the same as 200 calories of fruits and vegetables. Food Tracker&apos;s points system gives you better insight on the quality of your diet, not just your quantity in one convenient location.
             </p>
           </div>
         </section>
         <section className="feature right">
           <img src={newFood} alt="new entry screen" />
           <div className="desc">
-            <h4>Lorem ipsum</h4>
-            <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
+            <h4>Add</h4>
+            <p>Adding an entry is done in 3 simple steps. Name your entry, Choose the food categories, and enter the serving numbers. Your points will be calculated automatically.
             </p>
           </div>
         </section>
         <section className="feature left">
           <img src={calendar} alt="calendar screen" />
           <div className="desc">
-            <h4>Lorem ipsum</h4>
-            <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique arcu sed justo pharetra, in dictum quam dapibus. Integer rutrum dui in purus ultrices, at gravida felis suscipit. Aenean nisl odio, dapibus ac felis vitae, molestie placerat ligula. Maecenas quis purus quam. Nullam porttitor in arcu sed tincidunt. Suspendisse nec accumsan orci. Vivamus ligula ex, tincidunt sed pulvinar vel, congue vitae ipsum.
+            <h4>Review</h4>
+            <p>If you want to check your progress history, the calendar is the answer. Choose a date, and you can see what you ate on that day as well.
             </p>
           </div>
         </section>

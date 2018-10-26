@@ -16,7 +16,7 @@ export function RegistrationPage(props) {
       <HeaderBar title="Register"/>
       <main>
         <RegistrationForm />
-        <Link to="/"><button className="btn-black">Back</button></Link>
+        <Link to="/"><button className="btn-black btn-fixed">Back</button></Link>
       </main>
     </div>
   );
