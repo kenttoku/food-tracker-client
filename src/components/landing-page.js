@@ -18,7 +18,7 @@ export function LandingPage(props) {
     <div className="landing-page">
       <section className="landing-main">
         <div className="landing-header">
-          <h1 className="landing-headline">Food Tracker</h1>
+          <h1 className="landing-headline">Food Point</h1>
           <p className="landing-subtitle">A simple, intuitive food diary</p>
         </div>
         <div className="landing-page-buttons">
@@ -36,7 +36,7 @@ export function LandingPage(props) {
           <img src={dashboard} alt="dashboard screen" />
           <div className="desc">
             <h4>Calories don&apos;t tell the whole picture.</h4>
-            <p>200 calories of soda isn&apos;t the same as 200 calories of fruits and vegetables. Food Tracker&apos;s points system gives you better insight on the quality of your diet, not just your quantity in one convenient location.
+            <p>200 calories of soda isn&apos;t the same as 200 calories of fruits and vegetables. Food Point&apos;s points system gives you better insight on the quality of your diet, not just your quantity in one convenient location.
             </p>
           </div>
         </section>
