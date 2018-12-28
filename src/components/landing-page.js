@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import './buttons.css';
 import './landing-page.css';
+import { demoUser } from '../actions/auth-actions';
 import dashboard from '../assets/dashboard-thumbnail.PNG';
 import calendar from '../assets/calendar-thumbnail.PNG';
 import newFood from '../assets/new-thumbnail.PNG';
@@ -28,6 +29,7 @@ export function LandingPage(props) {
           <Link to="/login" >
             <button className="btn-green landing-btn">Login</button>
           </Link>
+          <button className="btn-black landing-btn" onClick={() => props.dispatch(demoUser())}>Use Demo Account</button>
         </div>
       </section>
       <div className="container">
